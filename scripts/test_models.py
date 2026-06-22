@@ -39,14 +39,15 @@ PROVIDERS: dict[str, dict[str, Any]] = {
 
 # ─── Model catalog ────────────────────────────────────────────────────────────
 # Curated free-tier models so cron runs don't burn through paid credits.
+# OpenRouter's mid-2026 free (:free-suffixed) catalog is narrow; verified
+# against https://openrouter.ai/api/v1/models
 OPENROUTER_FREE_MODELS = [
-    "meta-llama/llama-3.3-70b-instruct:free",
-    "meta-llama/llama-3.1-8b-instruct:free",
-    "qwen/qwen-2.5-coder-32b-instruct:free",
-    "mistralai/mistral-7b-instruct:free",
-    "google/gemma-3-12b-it:free",
-    "deepseek/deepseek-chat:free",
-    "microsoft/phi-3.5-mini-128k-instruct:free",
+    "cohere/north-mini-code:free",
+    "nvidia/nemotron-3-ultra-550b-a55b:free",
+    "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free",
+    "nvidia/nemotron-3.5-content-safety:free",
+    "poolside/laguna-xs.2:free",
+    "poolside/laguna-m.1:free",
 ]
 
 GROQ_MODELS = [
@@ -142,6 +143,7 @@ def call_model(model: str, provider_name: str, prompt: str) -> dict[str, Any]:
     headers = {
         "Authorization": f"Bearer {api_key}",
         "Content-Type": "application/json",
+        "User-Agent": "LLMstats/1.0 (+https://github.com/Saif658/LLMstats)",
     }
     headers.update(provider.get("extra_headers", {}))
 
@@ -176,6 +178,8 @@ def call_model(model: str, provider_name: str, prompt: str) -> dict[str, Any]:
     try:
         data = json.loads(raw_body)
     except json.JSONDecodeError as exc:
+        snippet = raw_body[:200].replace("\n", " ")
+        print(f"  [debug] raw body ({len(raw_body)} bytes): {snippet!r}", file=sys.stderr)
         return {
             "model": model,
             "provider": provider_name,

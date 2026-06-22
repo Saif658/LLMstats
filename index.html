@@ -517,7 +517,7 @@ const state = {
   modelStats: {},
   charts: {},
   currentTab: 'overview',
-  explorerModel: 'meta-llama/llama-3.3-70b-instruct:free',
+  explorerModel: 'nvidia/nemotron-3-ultra-550b-a55b:free',
   lbSort: { col: 'score', dir: 'desc' },
   lbFilter: '',
   timelineFilter: 'all',
@@ -1284,7 +1284,7 @@ function populateCompareSelects() {
   selA.innerHTML = opts;
   selB.innerHTML = opts;
 
-  const defaultA = 'meta-llama/llama-3.3-70b-instruct:free';
+  const defaultA = 'nvidia/nemotron-3-ultra-550b-a55b:free';
   const defaultB = 'llama-3.3-70b-versatile';
   selA.value = state.modelNames.includes(defaultA) ? defaultA : sorted[0];
   selB.value = state.modelNames.includes(defaultB) ? defaultB : sorted[1];
