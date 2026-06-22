@@ -1,0 +1,37 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+.venv/
+venv/
+.env
+
+# Temp benchmark artifacts (created by parallel group jobs; never committed)
+scripts/results.json
+scripts/results-group1.json
+scripts/results-group2.json
+
+# SQLite transient files (the WAL/SHM get rolled into history.db on commit)
+*.db-wal
+*.db-shm
+*.db-journal
+
+# OS / editor noise
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+*~
+
+# Tooling caches
+.mypy_cache/
+.pytest_cache/
+.ruff_cache/
+
+# Local NIMStats reference + Claude Code session metadata (not part of deployable project)
+NIMStats-main/
+.claude/
