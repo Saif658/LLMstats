@@ -93,13 +93,13 @@ The dashboard auto-refreshes every 2 hours after that. ✨
 ### 🟠 Groq
 | Model | Note |
 |-------|------|
-| `llama-3.3-70b-versatile` | Versatile default |
+| `llama-3.3-70b-versatile` | Meta flagship |
 | `llama-3.1-8b-instant` | Ultra-low latency |
-| `meta-llama/llama-4-maverick-17b-128e-instruct` | Llama 4 MoE flagship |
-| `meta-llama/llama-4-scout-17b-16e-instruct` | Llama 4 Scout |
-| `mistral-saba-24b` | Mistral reasoning |
-| `gemma2-9b-it` | Gemma 2 9B |
-| `meta-llama/llama-3.1-70b-versatile` | Older 70B baseline |
+| `meta-llama/llama-4-scout-17b-16e-instruct` | Llama 4 Scout MoE |
+| `qwen/qwen3-32b` | Qwen 3 flagship |
+| `qwen/qwen3.6-27b` | Qwen 3.6 mid-size |
+| `openai/gpt-oss-120b` | Open-source 120B |
+| `allam-2-7b` | Allam (small MoE) |
 
 </details>
 

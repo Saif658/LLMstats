@@ -50,14 +50,16 @@ OPENROUTER_FREE_MODELS = [
     "poolside/laguna-m.1:free",
 ]
 
+# Verified-valid Groq chat models in mid-2026 (whisper + prompt-guard skipped
+# — those are audio / classification, not chat).
 GROQ_MODELS = [
-    "llama-3.3-70b-versatile",
     "llama-3.1-8b-instant",
-    "meta-llama/llama-4-maverick-17b-128e-instruct",
+    "llama-3.3-70b-versatile",
     "meta-llama/llama-4-scout-17b-16e-instruct",
-    "mistral-saba-24b",
-    "gemma2-9b-it",
-    "meta-llama/llama-3.1-70b-versatile",
+    "qwen/qwen3-32b",
+    "qwen/qwen3.6-27b",
+    "openai/gpt-oss-120b",
+    "allam-2-7b",
 ]
 
 # (model_id, provider_name) pairs joined for convenience elsewhere.
