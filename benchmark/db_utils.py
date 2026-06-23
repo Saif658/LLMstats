@@ -4,8 +4,7 @@ import sqlite3
 from pathlib import Path
 from typing import Any
 
-REPO_ROOT = Path(__file__).resolve().parent.parent
-HISTORY_DB = REPO_ROOT / "history.db"
+HISTORY_DB = Path(__file__).resolve().parent / "history.db"
 MAX_RUNS = 720
 
 

@@ -20,13 +20,13 @@ jobs:
           OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
           MODEL_GROUP: group1
-        run: python3 scripts/test_models.py
+        run: python3 benchmark/test_models.py
 
       - name: Upload group1 results
         uses: actions/upload-artifact@v7
         with:
           name: results-group1
-          path: scripts/results.json
+          path: benchmark/results.json
           retention-days: 1
 
   test_group2:
@@ -40,13 +40,13 @@ jobs:
           OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
           MODEL_GROUP: group2
-        run: python3 scripts/test_models.py
+        run: python3 benchmark/test_models.py
 
       - name: Upload group2 results
         uses: actions/upload-artifact@v7
         with:
           name: results-group2
-          path: scripts/results.json
+          path: benchmark/results.json
           retention-days: 1
 
   merge_and_update:
@@ -59,19 +59,22 @@ jobs:
       - name: Download all results
         uses: actions/download-artifact@v8
         with:
-          path: scripts/
+          path: benchmark/_artifacts/
 
       - name: Merge results and update history
         run: |
-          mv scripts/results-group1/results.json scripts/results-group1.json || true
-          mv scripts/results-group2/results.json scripts/results-group2.json || true
-          python3 scripts/merge_results.py
+          mv benchmark/_artifacts/results-group1/results.json benchmark/results-group1.json || true
+          mv benchmark/_artifacts/results-group2/results.json benchmark/results-group2.json || true
+          python3 benchmark/merge_results.py
 
       - name: Commit and push results
         run: |
+          # The static dashboard in docs/ serves history.db via fetch('history.db'),
+          # so mirror the latest DB into docs/ alongside index.html on every merge.
+          cp benchmark/history.db docs/history.db
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add history.db
+          git add benchmark/history.db docs/history.db
           if ! git diff --cached --quiet; then
             git commit -m "Update benchmark results [skip ci]"
             git push

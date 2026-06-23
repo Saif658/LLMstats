@@ -385,7 +385,7 @@ def compile_output(timestamp: str, prompt: str, results: list[dict[str, Any]]) -
 
 def update_history(new_run: dict[str, Any]) -> None:
     write_run(new_run)
-    print(f"History updated: {str(SCRIPT_DIR.parent / 'history.db')}")
+    print(f"History updated: {str(SCRIPT_DIR / 'history.db')}")
 
 
 # ─── Entry point ──────────────────────────────────────────────────────────────

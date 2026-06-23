@@ -10,9 +10,9 @@ venv/
 .env
 
 # Temp benchmark artifacts (created by parallel group jobs; never committed)
-scripts/results.json
-scripts/results-group1.json
-scripts/results-group2.json
+benchmark/results.json
+benchmark/results-group1.json
+benchmark/results-group2.json
 
 # SQLite transient files (the WAL/SHM get rolled into history.db on commit)
 *.db-wal

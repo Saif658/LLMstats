@@ -142,7 +142,7 @@ The dashboard auto-refreshes every 2 hours after that. ✨
 │   └──────────┬──────────┘         └──────────┬──────────┘                │
 │              └──────────────┬───────────────┘                           │
 │                     ┌────────▼────────┐                                 │
-│                     │  Merge + commit │  → history.db updated in repo   │
+│                     │  Merge + commit │  → benchmark/history.db + docs/history.db │
 │                     └─────────────────┘                                 │
 └─────────────────────────────────────────────────────────────────────────┘
                                       │
@@ -161,7 +161,7 @@ The dashboard auto-refreshes every 2 hours after that. ✨
 <details>
 <summary><b>Change the prompt</b</summary>
 
-Edit `PROMPT` in `scripts/test_models.py`:
+Edit `PROMPT` in `benchmark/test_models.py`:
 ```python
 PROMPT = "Your custom prompt here"
 ```
@@ -171,7 +171,7 @@ PROMPT = "Your custom prompt here"
 <details>
 <summary><b>Add or remove models</b</summary>
 
-Edit `OPENROUTER_FREE_MODELS` and `GROQ_MODELS` in `scripts/test_models.py`. The two lists get split roughly in half between `group1` and `group2` jobs.
+Edit `OPENROUTER_FREE_MODELS` and `GROQ_MODELS` in `benchmark/test_models.py`. The two lists get split roughly in half between `group1` and `group2` jobs.
 
 </details>
 
@@ -191,15 +191,15 @@ Edit `.github/workflows/benchmark.yml`:
 <summary><b>Run locally</b</summary>
 
 ```bash
-# Serve the dashboard (requires history.db — created after first workflow run)
+# Serve the dashboard from the repo root (serves docs/index.html + docs/history.db)
 python3 -m http.server 8000
-# Open http://localhost:8000
+# Open http://localhost:8000/docs/
 
 # Run benchmarks manually (requires API keys as env vars)
 export OPENROUTER_API_KEY=...
 export GROQ_API_KEY=...
-python3 scripts/test_models.py            # all models
-MODEL_GROUP=group1 python3 scripts/test_models.py   # one half
+python3 benchmark/test_models.py            # all models
+MODEL_GROUP=group1 python3 benchmark/test_models.py   # one half
 ```
 
 </details>
@@ -208,7 +208,7 @@ MODEL_GROUP=group1 python3 scripts/test_models.py   # one half
 
 ## 📦 Data storage
 
-`history.db` is a SQLite database persisted in the repo. The browser loads it via [sql.js](https://sql.js.org/) (WebAssembly) and queries it entirely client-side. `scripts/results*.json` are temporary per-job artifacts that never get committed ([.gitignored](.gitignore)).
+`benchmark/history.db` is a SQLite database persisted in the repo. The browser loads it via [sql.js](https://sql.js.org/) (WebAssembly) and queries it entirely client-side. `benchmark/results*.json` are temporary per-job artifacts that never get committed ([.gitignored](.gitignore)). On every merge the workflow mirrors the latest `benchmark/history.db` to `docs/history.db` next to the dashboard.
 
 **Schema:**
 
