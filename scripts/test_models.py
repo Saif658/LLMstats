@@ -39,16 +39,19 @@ PROVIDERS: dict[str, dict[str, Any]] = {
 
 # ─── Model catalog ────────────────────────────────────────────────────────────
 # Curated free-tier models so cron runs don't burn through paid credits.
-# OpenRouter's mid-2026 free (:free-suffixed) catalog is narrow; verified
-# against https://openrouter.ai/api/v1/models
-OPENROUTER_FREE_MODELS = [
-    "cohere/north-mini-code:free",
-    "nvidia/nemotron-3-ultra-550b-a55b:free",
-    "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free",
-    "nvidia/nemotron-3.5-content-safety:free",
-    "poolside/laguna-xs.2:free",
-    "poolside/laguna-m.1:free",
-]
+# OpenRouter's free (:free-suffixed) catalog verified against
+# https://openrouter.ai/api/v1/models — covers 8 distinct upstream providers.
+OR_MODELS_BY_PROVIDER = {
+    "OpenRouter (their own gateway)": ["openrouter/free"],
+    "OpenAI":                          ["openai/gpt-oss-120b:free", "openai/gpt-oss-20b:free"],
+    "Meta":                            ["meta-llama/llama-3.3-70b-instruct:free", "meta-llama/llama-3.2-3b-instruct:free"],
+    "NVIDIA":                          ["nvidia/nemotron-3-ultra-550b-a55b:free", "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free"],
+    "Qwen":                            ["qwen/qwen3-next-80b-a3b-instruct:free"],
+    "Google":                          ["google/gemma-4-26b-a4b-it:free"],
+    "Nous":                            ["nousresearch/hermes-3-llama-3.1-405b:free"],
+    "Liquid":                          ["liquid/lfm-2.5-1.2b-instruct:free"],
+}
+OPENROUTER_FREE_MODELS = [m for ms in OR_MODELS_BY_PROVIDER.values() for m in ms]
 
 # Verified-valid Groq chat models in mid-2026 (whisper + prompt-guard skipped
 # — those are audio / classification, not chat).
@@ -68,13 +71,32 @@ ALL_MODELS: list[tuple[str, str]] = (
     + [(m, "groq") for m in GROQ_MODELS]
 )
 
-# Split roughly in half for parallel matrix jobs.
-def _split_models() -> tuple[list[tuple[str, str]], list[tuple[str, str]]]:
-    half = len(ALL_MODELS) // 2
-    return ALL_MODELS[:half], ALL_MODELS[half:]
+# Hand-tuned parallel-matrix split: both groups have ~half OpenRouter +
+# ~half Groq so neither serializes on the other.
+GROUP1_MODELS: list[tuple[str, str]] = [
+    # 4 OpenRouter + 4 Groq = 8
+    ("openrouter/free",                                          "openrouter"),
+    ("openai/gpt-oss-120b:free",                                 "openrouter"),
+    ("meta-llama/llama-3.3-70b-instruct:free",                   "openrouter"),
+    ("nvidia/nemotron-3-ultra-550b-a55b:free",                   "openrouter"),
+    ("llama-3.1-8b-instant",                                     "groq"),
+    ("llama-3.3-70b-versatile",                                  "groq"),
+    ("qwen/qwen3-32b",                                           "groq"),
+    ("qwen/qwen3.6-27b",                                         "groq"),
+]
 
-
-GROUP1_MODELS, GROUP2_MODELS = _split_models()
+GROUP2_MODELS: list[tuple[str, str]] = [
+    # 6 OpenRouter + 3 Groq = 9
+    ("openai/gpt-oss-20b:free",                                  "openrouter"),
+    ("meta-llama/llama-3.2-3b-instruct:free",                    "openrouter"),
+    ("nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free",       "openrouter"),
+    ("qwen/qwen3-next-80b-a3b-instruct:free",                    "openrouter"),
+    ("google/gemma-4-26b-a4b-it:free",                           "openrouter"),
+    ("nousresearch/hermes-3-llama-3.1-405b:free",                "openrouter"),
+    ("meta-llama/llama-4-scout-17b-16e-instruct",                "groq"),
+    ("openai/gpt-oss-120b",                                      "groq"),
+    ("allam-2-7b",                                               "groq"),
+]
 
 
 # ─── CLI selection ────────────────────────────────────────────────────────────

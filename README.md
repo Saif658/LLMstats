@@ -8,6 +8,8 @@
 [![Benchmark](https://img.shields.io/github/actions/workflow/status/Saif658/LLMstats/benchmark.yml?label=benchmarks&style=flat-square)](.github/workflows/benchmark.yml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-yellow?style=flat-square)](LICENSE)
 
+**🌐 [saif658.github.io/LLMstats](https://saif658.github.io/LLMstats/)** — live, public, refreshes every 2 hours
+
 > Forked from the architecture of [NIMStats](https://github.com/MauroDruwel/NIMStats), rebuilt to compare two OpenAI-compatible providers side-by-side.
 
 </div>
@@ -16,7 +18,7 @@
 
 ## ✨ What is LLMstats?
 
-**LLMstats** automatically benchmarks **13 free-tier models** every 2 hours — 6 served by [OpenRouter](https://openrouter.ai/) (the unified router, free-tier) and 7 served by [Groq](https://groq.com/) (the LPU cloud) — and publishes the results to a live, interactive dashboard. No servers, no subscriptions — just fork the repo, drop in two API keys, and go.
+**LLMstats** automatically benchmarks **17 free-tier models** every 2 hours — **10 served by [OpenRouter](https://openrouter.ai/) (the unified router, 8 upstream providers) and 7 served by [Groq](https://groq.com/) (the LPU cloud)** — and publishes the results to a live, interactive dashboard. No servers, no subscriptions — just fork the repo, drop in two API keys, and go.
 
 | 🏎️ Every 2h | 📊 Interactive Charts | 🔁 Zero Infra | 🔀 Multi-Provider |
 |:---:|:---:|:---:|:---:|
@@ -78,17 +80,21 @@ The dashboard auto-refreshes every 2 hours after that. ✨
 ## 🤖 Benchmarked models (free tier)
 
 <details>
-<summary><b>13 models across 2 providers</b</summary>
+<summary><b>17 models across 2 gateways, 11+ upstream providers</b</summary>
 
-### 🟣 OpenRouter (free-tier)
-| Model | Note |
-|-------|------|
-| `nvidia/nemotron-3-ultra-550b-a55b:free` | 550B MoE flagship |
-| `nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free` | Compact reasoning |
-| `nvidia/nemotron-3.5-content-safety:free` | Content-safety fine-tune |
-| `poolside/laguna-m.1:free` | Code-specialized |
-| `poolside/laguna-xs.2:free` | Code-specialized (smaller) |
-| `cohere/north-mini-code:free` | Code-specialized |
+### 🟣 OpenRouter · 10 models · 8 upstream providers
+| Upstream | Model | Note |
+|----------|-------|------|
+| **OpenRouter** | `openrouter/free` | OR's own free flagship |
+| **OpenAI**     | `openai/gpt-oss-120b:free` | Open-source 120B |
+| **OpenAI**     | `openai/gpt-oss-20b:free` | Open-source 20B |
+| **Meta**       | `meta-llama/llama-3.3-70b-instruct:free` | Large general-purpose |
+| **Meta**       | `meta-llama/llama-3.2-3b-instruct:free` | Lightweight Llama |
+| **NVIDIA**     | `nvidia/nemotron-3-ultra-550b-a55b:free` | 550B MoE flagship |
+| **NVIDIA**     | `nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free` | Compact reasoning |
+| **Qwen**       | `qwen/qwen3-next-80b-a3b-instruct:free` | Qwen 3 80B MoE |
+| **Google**     | `google/gemma-4-26b-a4b-it:free` | Gemma 4 mid-size |
+| **Nous**       | `nousresearch/hermes-3-llama-3.1-405b:free` | Hermes 3 405B |
 
 ### 🟠 Groq
 | Model | Note |
@@ -112,7 +118,7 @@ The dashboard auto-refreshes every 2 hours after that. ✨
 │                                                                          │
 │   ┌─────────────────────┐         ┌─────────────────────┐                │
 │   │  Job 1 — Group A    │         │  Job 2 — Group B    │  in parallel    │
-│   │  7 models (mixed)   │         │  7 models (mixed)   │                │
+│   │  8 models (mixed)   │         │  9 models (mixed)   │                │
 │   └──────────┬──────────┘         └──────────┬──────────┘                │
 │              └──────────────┬───────────────┘                           │
 │                     ┌────────▼────────┐                                 │
