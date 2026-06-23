@@ -18,7 +18,7 @@
 
 ## ✨ What is LLMstats?
 
-**LLMstats** automatically benchmarks **17 free-tier models** every 2 hours — **10 served by [OpenRouter](https://openrouter.ai/) (the unified router, 8 upstream providers) and 7 served by [Groq](https://groq.com/) (the LPU cloud)** — and publishes the results to a live, interactive dashboard. No servers, no subscriptions — just fork the repo, drop in two API keys, and go.
+**LLMstats** automatically benchmarks **37 free-tier models** every 2 hours — **26 served by [OpenRouter](https://openrouter.ai/) (the unified router, 12 upstream providers) and 11 served by [Groq](https://groq.com/) (the LPU cloud)** — and publishes the results to a live, interactive dashboard. No servers, no subscriptions — just fork the repo, drop in two API keys, and go.
 
 | 🏎️ Every 2h | 📊 Interactive Charts | 🔁 Zero Infra | 🔀 Multi-Provider |
 |:---:|:---:|:---:|:---:|
@@ -80,32 +80,52 @@ The dashboard auto-refreshes every 2 hours after that. ✨
 ## 🤖 Benchmarked models (free tier)
 
 <details>
-<summary><b>17 models across 2 gateways, 11+ upstream providers</b</summary>
+<summary><b>37 models across 2 gateways, 12+ upstream providers</b</summary>
 
-### 🟣 OpenRouter · 10 models · 8 upstream providers
+### 🟣 OpenRouter · 26 models · 12 upstream providers
 | Upstream | Model | Note |
 |----------|-------|------|
 | **OpenRouter** | `openrouter/free` | OR's own free flagship |
+| **OpenRouter** | `openrouter/owl-alpha` | OR preview alpha |
 | **OpenAI**     | `openai/gpt-oss-120b:free` | Open-source 120B |
-| **OpenAI**     | `openai/gpt-oss-20b:free` | Open-source 20B |
+| **OpenAI**     | `openai/gpt-oss-20b:free`  | Open-source 20B |
 | **Meta**       | `meta-llama/llama-3.3-70b-instruct:free` | Large general-purpose |
-| **Meta**       | `meta-llama/llama-3.2-3b-instruct:free` | Lightweight Llama |
-| **NVIDIA**     | `nvidia/nemotron-3-ultra-550b-a55b:free` | 550B MoE flagship |
-| **NVIDIA**     | `nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free` | Compact reasoning |
+| **Meta**       | `meta-llama/llama-3.2-3b-instruct:free`  | Lightweight Llama |
+| **NVIDIA**     | `nvidia/nemotron-3-ultra-550b-a55b:free`               | 550B MoE flagship |
+| **NVIDIA**     | `nvidia/nemotron-3-super-120b-a12b:free`                | 120B MoE super |
+| **NVIDIA**     | `nvidia/nemotron-3-nano-30b-a3b:free`                   | Compact MoE |
+| **NVIDIA**     | `nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free`    | Compact reasoning |
+| **NVIDIA**     | `nvidia/nemotron-nano-12b-v2-vl:free`                   | Vision-language |
+| **NVIDIA**     | `nvidia/nemotron-nano-9b-v2:free`                       | Compact 9B |
+| **NVIDIA**     | `nvidia/nemotron-3.5-content-safety:free`               | Content safety guard |
+| **Qwen**       | `qwen/qwen3-coder:free`                | Qwen 3 coding |
 | **Qwen**       | `qwen/qwen3-next-80b-a3b-instruct:free` | Qwen 3 80B MoE |
-| **Google**     | `google/gemma-4-26b-a4b-it:free` | Gemma 4 mid-size |
+| **Google**     | `google/gemma-4-26b-a4b-it:free`        | Gemma 4 mid-size |
+| **Google**     | `google/lyria-3-pro-preview`            | Lyria 3 pro (preview) |
+| **Google**     | `google/lyria-3-clip-preview`           | Lyria 3 clip (preview) |
 | **Nous**       | `nousresearch/hermes-3-llama-3.1-405b:free` | Hermes 3 405B |
+| **Nex AGI**    | `nex-agi/nex-n2-pro:free`               | Nex N2 Pro |
+| **Poolside**   | `poolside/laguna-m.1:free`              | Laguna m.1 |
+| **Poolside**   | `poolside/laguna-xs.2:free`             | Laguna xs.2 |
+| **Cohere**     | `cohere/north-mini-code:free`           | Cohere North mini-code |
+| **Liquid**     | `liquid/lfm-2.5-1.2b-instruct:free`     | Liquid LFM 2.5 1.2B |
+| **Liquid**     | `liquid/lfm-2.5-1.2b-thinking:free`     | Liquid LFM 2.5 1.2B thinking |
+| **Cognitive Computations** | `cognitivecomputations/dolphin-mistral-24b-venice-edition:free` | Dolphin Mistral 24B Venice |
 
-### 🟠 Groq
+### 🟠 Groq · 11 chat models
 | Model | Note |
 |-------|------|
-| `llama-3.3-70b-versatile` | Meta flagship |
-| `llama-3.1-8b-instant` | Ultra-low latency |
+| `llama-3.3-70b-versatile`                  | Meta flagship |
+| `llama-3.1-8b-instant`                     | Ultra-low latency |
 | `meta-llama/llama-4-scout-17b-16e-instruct` | Llama 4 Scout MoE |
-| `qwen/qwen3-32b` | Qwen 3 flagship |
-| `qwen/qwen3.6-27b` | Qwen 3.6 mid-size |
-| `openai/gpt-oss-120b` | Open-source 120B |
-| `allam-2-7b` | Allam (small MoE) |
+| `qwen/qwen3-32b`                           | Qwen 3 flagship |
+| `qwen/qwen3.6-27b`                         | Qwen 3.6 mid-size |
+| `openai/gpt-oss-120b`                      | Open-source 120B |
+| `openai/gpt-oss-20b`                       | Open-source 20B |
+| `openai/gpt-oss-safeguard-20b`             | Safety-guard 20B |
+| `groq/compound`                            | Groq compound agentic |
+| `groq/compound-mini`                       | Groq compound-mini agentic |
+| `allam-2-7b`                               | Allam (small MoE) |
 
 </details>
 

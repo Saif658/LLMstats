@@ -40,16 +40,40 @@ PROVIDERS: dict[str, dict[str, Any]] = {
 # ─── Model catalog ────────────────────────────────────────────────────────────
 # Curated free-tier models so cron runs don't burn through paid credits.
 # OpenRouter's free (:free-suffixed) catalog verified against
-# https://openrouter.ai/api/v1/models — covers 8 distinct upstream providers.
+# https://openrouter.ai/api/v1/models — covers 16 distinct upstream providers.
 OR_MODELS_BY_PROVIDER = {
-    "OpenRouter (their own gateway)": ["openrouter/free"],
-    "OpenAI":                          ["openai/gpt-oss-120b:free", "openai/gpt-oss-20b:free"],
-    "Meta":                            ["meta-llama/llama-3.3-70b-instruct:free", "meta-llama/llama-3.2-3b-instruct:free"],
-    "NVIDIA":                          ["nvidia/nemotron-3-ultra-550b-a55b:free", "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free"],
-    "Qwen":                            ["qwen/qwen3-next-80b-a3b-instruct:free"],
-    "Google":                          ["google/gemma-4-26b-a4b-it:free"],
-    "Nous":                            ["nousresearch/hermes-3-llama-3.1-405b:free"],
-    "Liquid":                          ["liquid/lfm-2.5-1.2b-instruct:free"],
+    "OpenRouter (their own gateway)":
+        ["openrouter/free", "openrouter/owl-alpha"],
+    "OpenAI":
+        ["openai/gpt-oss-120b:free", "openai/gpt-oss-20b:free"],
+    "Meta":
+        ["meta-llama/llama-3.3-70b-instruct:free", "meta-llama/llama-3.2-3b-instruct:free"],
+    "NVIDIA":
+        [
+            "nvidia/nemotron-3-ultra-550b-a55b:free",
+            "nvidia/nemotron-3-super-120b-a12b:free",
+            "nvidia/nemotron-3-nano-30b-a3b:free",
+            "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free",
+            "nvidia/nemotron-nano-12b-v2-vl:free",
+            "nvidia/nemotron-nano-9b-v2:free",
+            "nvidia/nemotron-3.5-content-safety:free",
+        ],
+    "Qwen":
+        ["qwen/qwen3-coder:free", "qwen/qwen3-next-80b-a3b-instruct:free"],
+    "Google":
+        ["google/gemma-4-26b-a4b-it:free", "google/lyria-3-pro-preview", "google/lyria-3-clip-preview"],
+    "Nous":
+        ["nousresearch/hermes-3-llama-3.1-405b:free"],
+    "Nex AGI":
+        ["nex-agi/nex-n2-pro:free"],
+    "Poolside":
+        ["poolside/laguna-m.1:free", "poolside/laguna-xs.2:free"],
+    "Cohere":
+        ["cohere/north-mini-code:free"],
+    "Liquid":
+        ["liquid/lfm-2.5-1.2b-instruct:free", "liquid/lfm-2.5-1.2b-thinking:free"],
+    "Cognitive Computations":
+        ["cognitivecomputations/dolphin-mistral-24b-venice-edition:free"],
 }
 OPENROUTER_FREE_MODELS = [m for ms in OR_MODELS_BY_PROVIDER.values() for m in ms]
 
@@ -62,6 +86,10 @@ GROQ_MODELS = [
     "qwen/qwen3-32b",
     "qwen/qwen3.6-27b",
     "openai/gpt-oss-120b",
+    "openai/gpt-oss-20b",
+    "openai/gpt-oss-safeguard-20b",
+    "groq/compound",
+    "groq/compound-mini",
     "allam-2-7b",
 ]
 
@@ -74,27 +102,47 @@ ALL_MODELS: list[tuple[str, str]] = (
 # Hand-tuned parallel-matrix split: both groups have ~half OpenRouter +
 # ~half Groq so neither serializes on the other.
 GROUP1_MODELS: list[tuple[str, str]] = [
-    # 4 OpenRouter + 4 Groq = 8
+    # 14 OpenRouter + 5 Groq = 19
     ("openrouter/free",                                          "openrouter"),
+    ("openrouter/owl-alpha",                                     "openrouter"),
     ("openai/gpt-oss-120b:free",                                 "openrouter"),
-    ("meta-llama/llama-3.3-70b-instruct:free",                   "openrouter"),
+    ("openai/gpt-oss-20b:free",                                  "openrouter"),
     ("nvidia/nemotron-3-ultra-550b-a55b:free",                   "openrouter"),
+    ("nvidia/nemotron-3-super-120b-a12b:free",                   "openrouter"),
+    ("nvidia/nemotron-3-nano-30b-a3b:free",                      "openrouter"),
+    ("nvidia/nemotron-nano-12b-v2-vl:free",                      "openrouter"),
+    ("nvidia/nemotron-nano-9b-v2:free",                          "openrouter"),
+    ("nvidia/nemotron-3.5-content-safety:free",                  "openrouter"),
+    ("meta-llama/llama-3.3-70b-instruct:free",                   "openrouter"),
+    ("google/gemma-4-26b-a4b-it:free",                           "openrouter"),
+    ("google/lyria-3-pro-preview",                               "openrouter"),
+    ("liquid/lfm-2.5-1.2b-instruct:free",                        "openrouter"),
     ("llama-3.1-8b-instant",                                     "groq"),
     ("llama-3.3-70b-versatile",                                  "groq"),
     ("qwen/qwen3-32b",                                           "groq"),
-    ("qwen/qwen3.6-27b",                                         "groq"),
+    ("openai/gpt-oss-120b",                                      "groq"),
+    ("groq/compound-mini",                                       "groq"),
 ]
 
 GROUP2_MODELS: list[tuple[str, str]] = [
-    # 6 OpenRouter + 3 Groq = 9
-    ("openai/gpt-oss-20b:free",                                  "openrouter"),
-    ("meta-llama/llama-3.2-3b-instruct:free",                    "openrouter"),
+    # 12 OpenRouter + 6 Groq = 18
     ("nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free",       "openrouter"),
+    ("meta-llama/llama-3.2-3b-instruct:free",                    "openrouter"),
+    ("qwen/qwen3-coder:free",                                    "openrouter"),
     ("qwen/qwen3-next-80b-a3b-instruct:free",                    "openrouter"),
-    ("google/gemma-4-26b-a4b-it:free",                           "openrouter"),
     ("nousresearch/hermes-3-llama-3.1-405b:free",                "openrouter"),
+    ("google/lyria-3-clip-preview",                              "openrouter"),
+    ("nex-agi/nex-n2-pro:free",                                  "openrouter"),
+    ("poolside/laguna-m.1:free",                                 "openrouter"),
+    ("poolside/laguna-xs.2:free",                                "openrouter"),
+    ("cohere/north-mini-code:free",                              "openrouter"),
+    ("liquid/lfm-2.5-1.2b-thinking:free",                        "openrouter"),
+    ("cognitivecomputations/dolphin-mistral-24b-venice-edition:free", "openrouter"),
     ("meta-llama/llama-4-scout-17b-16e-instruct",                "groq"),
-    ("openai/gpt-oss-120b",                                      "groq"),
+    ("qwen/qwen3.6-27b",                                         "groq"),
+    ("openai/gpt-oss-20b",                                       "groq"),
+    ("openai/gpt-oss-safeguard-20b",                             "groq"),
+    ("groq/compound",                                            "groq"),
     ("allam-2-7b",                                               "groq"),
 ]
 
@@ -148,7 +196,13 @@ def to_int(value: Any) -> int:
 
 
 # ─── API call ─────────────────────────────────────────────────────────────────
-def call_model(model: str, provider_name: str, prompt: str) -> dict[str, Any]:
+def call_model(
+    model: str,
+    provider_name: str,
+    prompt: str,
+    max_retries: int = 2,
+) -> dict[str, Any]:
+    """Hit a model once, retrying with exponential backoff on HTTP 429/5xx."""
     provider = PROVIDERS[provider_name]
     api_key = os.getenv(provider["key_env"], "")
     if not api_key:
@@ -171,6 +225,43 @@ def call_model(model: str, provider_name: str, prompt: str) -> dict[str, Any]:
     }
     headers.update(provider.get("extra_headers", {}))
 
+    retryable_statuses = {429, 500, 502, 503, 504}
+    last_result: dict[str, Any] | None = None
+
+    for attempt in range(max_retries + 1):
+        if attempt > 0:
+            wait = 2 ** attempt  # 2s, 4s, 8s ...
+            print(f"  [retry {attempt}/{max_retries}] waiting {wait}s ...")
+            time.sleep(wait)
+
+        result = _call_model_once(model, provider_name, body, headers)
+        last_result = result
+
+        # Only retry on rate limit / transient upstream errors
+        if result.get("success"):
+            return result
+        err = result.get("error") or ""
+        is_retryable = False
+        for code in retryable_statuses:
+            if f"HTTP {code}" in err or err.startswith(f"HTTP {code}"):
+                is_retryable = True
+                break
+        # Empty responses can race — retry once
+        if err == "Empty response from API" and attempt < max_retries:
+            is_retryable = True
+        if not is_retryable or attempt >= max_retries:
+            return result
+
+    return last_result or failure_result(model, provider_name, "Unknown error")
+
+
+def _call_model_once(
+    model: str,
+    provider_name: str,
+    body: bytes,
+    headers: dict[str, str],
+) -> dict[str, Any]:
+    provider = PROVIDERS[provider_name]
     request = urllib.request.Request(
         f"{provider['base']}/chat/completions",
         data=body,
