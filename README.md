@@ -2,13 +2,13 @@
 
 # LLMstats
 
-**Real-time benchmarking of free-tier models from OpenRouter and Groq — automated every 2 hours, zero infrastructure.**
+**Real-time benchmarking of free-tier models from OpenRouter and Groq — automated roughly every 3 hours, zero infrastructure.**
 
 [![Live Dashboard](https://img.shields.io/badge/🌐%20live-github.io-06b6d4?style=flat-square)](https://saif658.github.io/LLMstats/)
 [![Benchmark](https://img.shields.io/github/actions/workflow/status/Saif658/LLMstats/benchmark.yml?label=benchmarks&style=flat-square)](.github/workflows/benchmark.yml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-yellow?style=flat-square)](LICENSE)
 
-**🌐 [saif658.github.io/LLMstats](https://saif658.github.io/LLMstats/)** — live, public, refreshes every 2 hours
+**🌐 [saif658.github.io/LLMstats](https://saif658.github.io/LLMstats/)** — live, public, refreshes roughly every 3 hours
 
 > Forked from the architecture of [NIMStats](https://github.com/MauroDruwel/NIMStats), rebuilt to compare two OpenAI-compatible providers side-by-side.
 
@@ -18,9 +18,9 @@
 
 ## ✨ What is LLMstats?
 
-**LLMstats** automatically benchmarks **37 free-tier models** every 2 hours — **26 served by [OpenRouter](https://openrouter.ai/) (the unified router, 12 upstream providers) and 11 served by [Groq](https://groq.com/) (the LPU cloud)** — and publishes the results to a live, interactive dashboard. No servers, no subscriptions — just fork the repo, drop in two API keys, and go.
+**LLMstats** automatically benchmarks **37 free-tier models** roughly every 3 hours — **26 served by [OpenRouter](https://openrouter.ai/) (the unified router, 12 upstream providers) and 11 served by [Groq](https://groq.com/) (the LPU cloud)** — and publishes the results to a live, interactive dashboard. No servers, no subscriptions — just fork the repo, drop in two API keys, and go.
 
-| 🏎️ Every 2h | 📊 Interactive Charts | 🔁 Zero Infra | 🔀 Multi-Provider |
+| 🏎️ Every ~3h | 📊 Interactive Charts | 🔁 Zero Infra | 🔀 Multi-Provider |
 |:---:|:---:|:---:|:---:|
 | GitHub Actions cron | Speed, throughput, reliability | Static site + free CI/CD | OpenRouter ↔ Groq comparisons |
 
@@ -61,7 +61,7 @@ In your forked repo: **Settings → Secrets and variables → Actions → New re
 
 **Actions → Benchmark OpenRouter + Groq Models → Run workflow**.
 
-The dashboard auto-refreshes every 2 hours after that. ✨
+The dashboard auto-refreshes roughly every 3 hours after that. ✨
 
 ---
 
@@ -134,7 +134,7 @@ The dashboard auto-refreshes every 2 hours after that. ✨
 ## 🏗️ How it works
 
 ```
-┌─── GitHub Actions (every 2h) ────────────────────────────────────────────┐
+┌─── GitHub Actions (every ~3h) ────────────────────────────────────────────┐
 │                                                                          │
 │   ┌─────────────────────┐         ┌─────────────────────┐                │
 │   │  Job 1 — Group A    │         │  Job 2 — Group B    │  in parallel    │
@@ -180,7 +180,7 @@ Edit `OPENROUTER_FREE_MODELS` and `GROQ_MODELS` in `benchmark/test_models.py`. T
 
 Edit `.github/workflows/benchmark.yml`:
 ```yaml
-- cron: '0 */2 * * *'   # every 2 hours (default)
+- cron: '0 */3 * * *'   # every 3 hours (default)
 - cron: '0 */1 * * *'   # every hour
 - cron: '0 0 */6 * *'   # every 6 hours
 ```
