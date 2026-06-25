@@ -14,7 +14,17 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from db_utils import write_run
 
 REQUEST_TIMEOUT_SECONDS = int(os.getenv("REQUEST_TIMEOUT_SECONDS", "300"))
+DEFAULT_MAX_TOKENS = 500
 PROMPT = "Write a Python function that checks if a number is prime and returns True or False"
+
+# Per-model max_tokens overrides — reasoning-heavy models burn 500 tokens on
+# internal thinking and return empty content. Raise budget for those.
+MODEL_MAX_TOKENS_OVERRIDES: dict[str, int] = {
+    "liquid/lfm-2.5-1.2b-thinking:free": 2000,
+    "nvidia/nemotron-nano-9b-v2:free": 2000,
+    "cohere/north-mini-code:free": 2000,
+    "poolside/laguna-m.1:free": 2000,
+}
 
 SCRIPT_DIR = Path(__file__).resolve().parent
 OUTPUT_FILE = SCRIPT_DIR / "results.json"
@@ -64,8 +74,6 @@ OR_MODELS_BY_PROVIDER = {
         ["google/gemma-4-26b-a4b-it:free"],
     "Nous":
         ["nousresearch/hermes-3-llama-3.1-405b:free"],
-    "Nex AGI":
-        ["nex-agi/nex-n2-pro:free"],
     "Poolside":
         ["poolside/laguna-m.1:free", "poolside/laguna-xs.2:free"],
     "Cohere":
@@ -130,7 +138,6 @@ GROUP2_MODELS: list[tuple[str, str]] = [
     ("qwen/qwen3-coder:free",                                    "openrouter"),
     ("qwen/qwen3-next-80b-a3b-instruct:free",                    "openrouter"),
     ("nousresearch/hermes-3-llama-3.1-405b:free",                "openrouter"),
-    ("nex-agi/nex-n2-pro:free",                                  "openrouter"),
     ("poolside/laguna-m.1:free",                                 "openrouter"),
     ("poolside/laguna-xs.2:free",                                "openrouter"),
     ("cohere/north-mini-code:free",                              "openrouter"),
@@ -211,7 +218,7 @@ def call_model(
         "messages": [{"role": "user", "content": prompt}],
         "temperature": 0.7,
         "top_p": 0.9,
-        "max_tokens": 500,
+        "max_tokens": MODEL_MAX_TOKENS_OVERRIDES.get(model, DEFAULT_MAX_TOKENS),
         "stream": False,
     }
     body = json.dumps(payload).encode("utf-8")
