@@ -61,7 +61,7 @@ OR_MODELS_BY_PROVIDER = {
     "Qwen":
         ["qwen/qwen3-coder:free", "qwen/qwen3-next-80b-a3b-instruct:free"],
     "Google":
-        ["google/gemma-4-26b-a4b-it:free", "google/lyria-3-pro-preview", "google/lyria-3-clip-preview"],
+        ["google/gemma-4-26b-a4b-it:free"],
     "Nous":
         ["nousresearch/hermes-3-llama-3.1-405b:free"],
     "Nex AGI":
@@ -115,7 +115,6 @@ GROUP1_MODELS: list[tuple[str, str]] = [
     ("nvidia/nemotron-3.5-content-safety:free",                  "openrouter"),
     ("meta-llama/llama-3.3-70b-instruct:free",                   "openrouter"),
     ("google/gemma-4-26b-a4b-it:free",                           "openrouter"),
-    ("google/lyria-3-pro-preview",                               "openrouter"),
     ("liquid/lfm-2.5-1.2b-instruct:free",                        "openrouter"),
     ("llama-3.1-8b-instant",                                     "groq"),
     ("llama-3.3-70b-versatile",                                  "groq"),
@@ -131,7 +130,6 @@ GROUP2_MODELS: list[tuple[str, str]] = [
     ("qwen/qwen3-coder:free",                                    "openrouter"),
     ("qwen/qwen3-next-80b-a3b-instruct:free",                    "openrouter"),
     ("nousresearch/hermes-3-llama-3.1-405b:free",                "openrouter"),
-    ("google/lyria-3-clip-preview",                              "openrouter"),
     ("nex-agi/nex-n2-pro:free",                                  "openrouter"),
     ("poolside/laguna-m.1:free",                                 "openrouter"),
     ("poolside/laguna-xs.2:free",                                "openrouter"),
