@@ -1288,7 +1288,7 @@ function populateCompareSelects() {
   selB.innerHTML = opts;
 
   const defaultA = 'nvidia/nemotron-3-ultra-550b-a55b:free';
-  const defaultB = 'llama-3.3-70b-versatile';
+  const defaultB = 'llama-3.1-8b-instant';
   selA.value = state.modelNames.includes(defaultA) ? defaultA : sorted[0];
   selB.value = state.modelNames.includes(defaultB) ? defaultB : sorted[1];
 

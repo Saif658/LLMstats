@@ -112,10 +112,9 @@ The dashboard auto-refreshes roughly every 3 hours after that. ✨
 | **Liquid**     | `liquid/lfm-2.5-1.2b-thinking:free`     | Liquid LFM 2.5 1.2B thinking |
 | **Cognitive Computations** | `cognitivecomputations/dolphin-mistral-24b-venice-edition:free` | Dolphin Mistral 24B Venice |
 
-### 🟠 Groq · 11 chat models
+### 🟠 Groq · 10 chat models
 | Model | Note |
 |-------|------|
-| `llama-3.3-70b-versatile`                  | Meta flagship |
 | `llama-3.1-8b-instant`                     | Ultra-low latency |
 | `meta-llama/llama-4-scout-17b-16e-instruct` | Llama 4 Scout MoE |
 | `qwen/qwen3-32b`                           | Qwen 3 flagship |

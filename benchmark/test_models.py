@@ -89,7 +89,6 @@ OPENROUTER_FREE_MODELS = [m for ms in OR_MODELS_BY_PROVIDER.values() for m in ms
 # — those are audio / classification, not chat).
 GROQ_MODELS = [
     "llama-3.1-8b-instant",
-    "llama-3.3-70b-versatile",
     "meta-llama/llama-4-scout-17b-16e-instruct",
     "qwen/qwen3-32b",
     "qwen/qwen3.6-27b",
@@ -110,7 +109,7 @@ ALL_MODELS: list[tuple[str, str]] = (
 # Hand-tuned parallel-matrix split: both groups have ~half OpenRouter +
 # ~half Groq so neither serializes on the other.
 GROUP1_MODELS: list[tuple[str, str]] = [
-    # 14 OpenRouter + 5 Groq = 19
+    # 14 OpenRouter + 4 Groq = 18
     ("openrouter/free",                                          "openrouter"),
     ("openrouter/owl-alpha",                                     "openrouter"),
     ("openai/gpt-oss-120b:free",                                 "openrouter"),
@@ -125,7 +124,6 @@ GROUP1_MODELS: list[tuple[str, str]] = [
     ("google/gemma-4-26b-a4b-it:free",                           "openrouter"),
     ("liquid/lfm-2.5-1.2b-instruct:free",                        "openrouter"),
     ("llama-3.1-8b-instant",                                     "groq"),
-    ("llama-3.3-70b-versatile",                                  "groq"),
     ("qwen/qwen3-32b",                                           "groq"),
     ("openai/gpt-oss-120b",                                      "groq"),
     ("groq/compound-mini",                                       "groq"),
