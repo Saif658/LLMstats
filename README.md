@@ -80,9 +80,9 @@ The dashboard auto-refreshes roughly every 3 hours after that. ✨
 ## 🤖 Benchmarked models (free tier)
 
 <details>
-<summary><b>37 models across 2 gateways, 12+ upstream providers</b</summary>
+<summary><b>33 models across 2 gateways, 11+ upstream providers</b</summary>
 
-### 🟣 OpenRouter · 26 models · 12 upstream providers
+### 🟣 OpenRouter · 23 models · 11 upstream providers
 | Upstream | Model | Note |
 |----------|-------|------|
 | **OpenRouter** | `openrouter/free` | OR's own free flagship |
