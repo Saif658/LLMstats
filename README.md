@@ -101,8 +101,6 @@ The dashboard auto-refreshes roughly every 3 hours after that. ✨
 | **Qwen**       | `qwen/qwen3-coder:free`                | Qwen 3 coding |
 | **Qwen**       | `qwen/qwen3-next-80b-a3b-instruct:free` | Qwen 3 80B MoE |
 | **Google**     | `google/gemma-4-26b-a4b-it:free`        | Gemma 4 mid-size |
-| **Google**     | `google/lyria-3-pro-preview`            | Lyria 3 pro (preview) |
-| **Google**     | `google/lyria-3-clip-preview`           | Lyria 3 clip (preview) |
 | **Nous**       | `nousresearch/hermes-3-llama-3.1-405b:free` | Hermes 3 405B |
 | **Nex AGI**    | `nex-agi/nex-n2-pro:free`               | Nex N2 Pro |
 | **Poolside**   | `poolside/laguna-m.1:free`              | Laguna m.1 |
