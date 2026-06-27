@@ -2,7 +2,7 @@
 
 # LLMstats
 
-**Real-time benchmarking of free-tier models from OpenRouter and Groq — automated roughly every 3 hours, zero infrastructure.**
+**Real-time benchmarking of free-tier models from OpenRouter, Groq, and Mistral — automated roughly every 3 hours, zero infrastructure.**
 
 [![Live Dashboard](https://img.shields.io/badge/🌐%20live-github.io-06b6d4?style=flat-square)](https://saif658.github.io/LLMstats/)
 [![Benchmark](https://img.shields.io/github/actions/workflow/status/Saif658/LLMstats/benchmark.yml?label=benchmarks&style=flat-square)](.github/workflows/benchmark.yml)
@@ -10,7 +10,7 @@
 
 **🌐 [saif658.github.io/LLMstats](https://saif658.github.io/LLMstats/)** — live, public, refreshes roughly every 3 hours
 
-> Forked from the architecture of [NIMStats](https://github.com/MauroDruwel/NIMStats), rebuilt to compare two OpenAI-compatible providers side-by-side.
+> Forked from the architecture of [NIMStats](https://github.com/MauroDruwel/NIMStats), rebuilt to compare three OpenAI-compatible providers side-by-side.
 
 </div>
 
@@ -18,11 +18,11 @@
 
 ## ✨ What is LLMstats?
 
-**LLMstats** automatically benchmarks **37 free-tier models** roughly every 3 hours — **26 served by [OpenRouter](https://openrouter.ai/) (the unified router, 12 upstream providers) and 11 served by [Groq](https://groq.com/) (the LPU cloud)** — and publishes the results to a live, interactive dashboard. No servers, no subscriptions — just fork the repo, drop in two API keys, and go.
+**LLMstats** automatically benchmarks **47 free-tier models** roughly every 3 hours — **23 served by [OpenRouter](https://openrouter.ai/) (the unified router, 11 upstream providers), 10 by [Groq](https://groq.com/) (the LPU cloud), and 14 by [Mistral](https://mistral.ai/) (Experiment tier)** — and publishes the results to a live, interactive dashboard. No servers, no subscriptions — just fork the repo, drop in three API keys, and go.
 
 | 🏎️ Every ~3h | 📊 Interactive Charts | 🔁 Zero Infra | 🔀 Multi-Provider |
 |:---:|:---:|:---:|:---:|
-| GitHub Actions cron | Speed, throughput, reliability | Static site + free CI/CD | OpenRouter ↔ Groq comparisons |
+| GitHub Actions cron | Speed, throughput, reliability | Static site + free CI/CD | OpenRouter ↔ Groq ↔ Mistral comparisons |
 
 ---
 
@@ -43,6 +43,7 @@ cd LLMstats
 |----------|-----------------|
 | OpenRouter  | [openrouter.ai/keys](https://openrouter.ai/keys) — sign up, generate a key |
 | Groq        | [console.groq.com/keys](https://console.groq.com/keys) — sign up, generate a key |
+| Mistral     | [console.mistral.ai/api-keys](https://console.mistral.ai/api-keys) — sign up, generate a key (La Plateforme / Experiment tier) |
 
 ### 3. Add secrets
 
@@ -52,6 +53,7 @@ In your forked repo: **Settings → Secrets and variables → Actions → New re
 |------|-------|
 | `OPENROUTER_API_KEY` | Your OpenRouter API key |
 | `GROQ_API_KEY`       | Your Groq API key |
+| `MISTRAL_API_KEY`    | Your Mistral API key |
 
 ### 4. Enable GitHub Pages
 
@@ -59,7 +61,7 @@ In your forked repo: **Settings → Secrets and variables → Actions → New re
 
 ### 5. Run your first benchmark
 
-**Actions → Benchmark OpenRouter + Groq Models → Run workflow**.
+**Actions → Benchmark OpenRouter + Groq + Mistral Models → Run workflow**.
 
 The dashboard auto-refreshes roughly every 3 hours after that. ✨
 
@@ -70,7 +72,7 @@ The dashboard auto-refreshes roughly every 3 hours after that. ✨
 | Tab        | What you get |
 |------------|--------------|
 | 📊 **Overview**      | 5 KPI cards · success-rate trend · top-10 speed & throughput bars · per-model reliability pills |
-| 🏆 **Leaderboard**   | Composite score · sortable columns · trend indicators · **provider chips** (OpenRouter vs Groq) |
+| 🏆 **Leaderboard**   | Composite score · sortable columns · trend indicators · **provider chips** (OpenRouter vs Groq vs Mistral) |
 | 🔬 **Explorer**      | Per-model deep dive · response time history · error breakdown · availability heatmap |
 | ⏱ **Timeline**       | Filterable run history · expandable run cards with full per-model detail |
 | ⚔️ **Compare**       | Head-to-head overlay · win-rate stats · side-by-side metric comparison |
@@ -80,7 +82,7 @@ The dashboard auto-refreshes roughly every 3 hours after that. ✨
 ## 🤖 Benchmarked models (free tier)
 
 <details>
-<summary><b>33 models across 2 gateways, 11+ upstream providers</b</summary>
+<summary><b>47 models across 3 gateways, 14+ upstream providers</b</summary>
 
 ### 🟣 OpenRouter · 23 models · 11 upstream providers
 | Upstream | Model | Note |
@@ -124,6 +126,24 @@ The dashboard auto-refreshes roughly every 3 hours after that. ✨
 | `groq/compound-mini`                       | Groq compound-mini agentic |
 | `allam-2-7b`                               | Allam (small MoE) |
 
+### 🔵 Mistral · 14 chat models (Experiment tier)
+| Model | Note |
+|-------|------|
+| `mistral-large-latest`                     | Mistral Large flagship |
+| `mistral-medium-latest`                    | Mistral Medium |
+| `mistral-small-latest`                     | Mistral Small |
+| `mistral-tiny-latest`                      | Mistral Tiny |
+| `ministral-8b-latest`                      | Ministral 8B |
+| `ministral-3b-latest`                      | Ministral 3B |
+| `magistral-medium-latest`                  | Magistral medium |
+| `magistral-small-latest`                   | Magistral small |
+| `codestral-latest`                         | Code-specialized |
+| `devstral-latest`                          | Developer agent |
+| `devstral-small-latest`                    | Developer agent small |
+| `open-mistral-7b`                          | Open 7B |
+| `open-mixtral-8x7b`                        | Open MoE 8×7B |
+| `open-mixtral-8x22b`                       | Open MoE 8×22B |
+
 </details>
 
 ---
@@ -135,7 +155,7 @@ The dashboard auto-refreshes roughly every 3 hours after that. ✨
 │                                                                          │
 │   ┌─────────────────────┐         ┌─────────────────────┐                │
 │   │  Job 1 — Group A    │         │  Job 2 — Group B    │  in parallel    │
-│   │  8 models (mixed)   │         │  9 models (mixed)   │                │
+│   │  25 models (mixed)  │         │  22 models (mixed)  │                │
 │   └──────────┬──────────┘         └──────────┬──────────┘                │
 │              └──────────────┬───────────────┘                           │
 │                     ┌────────▼────────┐                                 │
@@ -168,7 +188,7 @@ PROMPT = "Your custom prompt here"
 <details>
 <summary><b>Add or remove models</b</summary>
 
-Edit `OPENROUTER_FREE_MODELS` and `GROQ_MODELS` in `benchmark/test_models.py`. The two lists get split roughly in half between `group1` and `group2` jobs.
+Edit `OPENROUTER_FREE_MODELS`, `GROQ_MODELS`, or `MISTRAL_MODELS` in `benchmark/test_models.py`. The lists get split roughly in half between `group1` and `group2` jobs.
 
 </details>
 
@@ -195,6 +215,7 @@ python3 -m http.server 8000
 # Run benchmarks manually (requires API keys as env vars)
 export OPENROUTER_API_KEY=...
 export GROQ_API_KEY=...
+export MISTRAL_API_KEY=...
 python3 benchmark/test_models.py            # all models
 MODEL_GROUP=group1 python3 benchmark/test_models.py   # one half
 ```
