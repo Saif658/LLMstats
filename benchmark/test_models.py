@@ -150,8 +150,6 @@ MISTRAL_MODELS = [
     "open-mistral-7b",
     "open-mixtral-8x7b",
     "open-mixtral-8x22b",
-    "mistral-saba-latest",
-    "mistral-saba-2506",
 ]
 
 # (model_id, provider_name) pairs joined for convenience elsewhere.
@@ -193,7 +191,7 @@ GROUP1_MODELS: list[tuple[str, str]] = [
 ]
 
 GROUP2_MODELS: list[tuple[str, str]] = [
-    # 10 OpenRouter + 6 Groq + 8 Mistral = 24
+    # 10 OpenRouter + 6 Groq + 6 Mistral = 22
     ("nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free",       "openrouter"),
     ("meta-llama/llama-3.2-3b-instruct:free",                    "openrouter"),
     ("qwen/qwen3-coder:free",                                    "openrouter"),
@@ -216,8 +214,6 @@ GROUP2_MODELS: list[tuple[str, str]] = [
     ("devstral-small-latest",                                    "mistral"),
     ("open-mistral-7b",                                          "mistral"),
     ("open-mixtral-8x7b",                                        "mistral"),
-    ("mistral-saba-latest",                                      "mistral"),
-    ("mistral-saba-2506",                                        "mistral"),
 ]
 
 
