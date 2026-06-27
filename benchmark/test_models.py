@@ -45,6 +45,11 @@ PROVIDERS: dict[str, dict[str, Any]] = {
         "key_env": "GROQ_API_KEY",
         "extra_headers": {},
     },
+    "mistral": {
+        "base": "https://api.mistral.ai/v1",
+        "key_env": "MISTRAL_API_KEY",
+        "extra_headers": {},
+    },
 }
 
 # ─── Model catalog ────────────────────────────────────────────────────────────
@@ -100,16 +105,66 @@ GROQ_MODELS = [
     "allam-2-7b",
 ]
 
+
+def fetch_mistral_models(api_key: str) -> list[str]:
+    """List text-chat models available from Mistral's API.
+
+    Filters out ocr/voxtral (audio), embed, moderation, and fine-tuned (ft:)
+    model ids. Keeps Small/Medium/Large/Codestral/Devstral/Magistral/Ministral
+    and open-* variants — all eligible for the same shared Experiment-tier cap.
+    """
+    req = urllib.request.Request(
+        "https://api.mistral.ai/v1/models",
+        headers={"Authorization": f"Bearer {api_key}"},
+    )
+    with urllib.request.urlopen(req) as resp:
+        data = json.loads(resp.read())
+
+    excluded_substrings = ("ocr", "voxtral", "embed", "moderation")
+
+    def keep(model_id: str) -> bool:
+        if model_id.startswith("ft:"):
+            return False
+        lowered = model_id.lower()
+        return not any(token in lowered for token in excluded_substrings)
+
+    return [m["id"] for m in data.get("data", []) if keep(m["id"])]
+
+
+# Mistral text-chat models — Experiment tier covers the entire chat catalog
+# under one shared rate limit (verified against api.mistral.ai/v1/models on
+# 2026-06-27). Snapshot rather than fetching every run so benchmark history
+# stays comparable run-to-run, the same reasoning as NVIDIA.
+MISTRAL_MODELS = [
+    "mistral-large-latest",
+    "mistral-medium-latest",
+    "mistral-small-latest",
+    "mistral-tiny-latest",
+    "ministral-8b-latest",
+    "ministral-3b-latest",
+    "magistral-medium-latest",
+    "magistral-small-latest",
+    "codestral-latest",
+    "devstral-latest",
+    "devstral-small-latest",
+    "open-mistral-7b",
+    "open-mixtral-8x7b",
+    "open-mixtral-8x22b",
+    "mistral-saba-latest",
+    "mistral-saba-2506",
+]
+
 # (model_id, provider_name) pairs joined for convenience elsewhere.
 ALL_MODELS: list[tuple[str, str]] = (
     [(m, "openrouter") for m in OPENROUTER_FREE_MODELS]
     + [(m, "groq") for m in GROQ_MODELS]
+    + [(m, "mistral") for m in MISTRAL_MODELS]
 )
 
 # Hand-tuned parallel-matrix split: both groups have ~half OpenRouter +
 # ~half Groq so neither serializes on the other.
 GROUP1_MODELS: list[tuple[str, str]] = [
-    # 14 OpenRouter + 4 Groq = 18
+    # 13 OpenRouter + 4 Groq + 8 Mistral = 25
     ("openrouter/free",                                          "openrouter"),
     ("openrouter/owl-alpha",                                     "openrouter"),
     ("openai/gpt-oss-120b:free",                                 "openrouter"),
@@ -127,10 +182,18 @@ GROUP1_MODELS: list[tuple[str, str]] = [
     ("qwen/qwen3-32b",                                           "groq"),
     ("openai/gpt-oss-120b",                                      "groq"),
     ("groq/compound-mini",                                       "groq"),
+    ("mistral-large-latest",                                     "mistral"),
+    ("mistral-medium-latest",                                    "mistral"),
+    ("mistral-small-latest",                                     "mistral"),
+    ("ministral-8b-latest",                                      "mistral"),
+    ("magistral-medium-latest",                                  "mistral"),
+    ("codestral-latest",                                         "mistral"),
+    ("devstral-latest",                                          "mistral"),
+    ("open-mixtral-8x22b",                                       "mistral"),
 ]
 
 GROUP2_MODELS: list[tuple[str, str]] = [
-    # 12 OpenRouter + 6 Groq = 18
+    # 10 OpenRouter + 6 Groq + 8 Mistral = 24
     ("nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free",       "openrouter"),
     ("meta-llama/llama-3.2-3b-instruct:free",                    "openrouter"),
     ("qwen/qwen3-coder:free",                                    "openrouter"),
@@ -147,6 +210,14 @@ GROUP2_MODELS: list[tuple[str, str]] = [
     ("openai/gpt-oss-safeguard-20b",                             "groq"),
     ("groq/compound",                                            "groq"),
     ("allam-2-7b",                                               "groq"),
+    ("mistral-tiny-latest",                                      "mistral"),
+    ("ministral-3b-latest",                                      "mistral"),
+    ("magistral-small-latest",                                   "mistral"),
+    ("devstral-small-latest",                                    "mistral"),
+    ("open-mistral-7b",                                          "mistral"),
+    ("open-mixtral-8x7b",                                        "mistral"),
+    ("mistral-saba-latest",                                      "mistral"),
+    ("mistral-saba-2506",                                        "mistral"),
 ]
 
 
@@ -418,7 +489,11 @@ def main() -> int:
         else:
             print(f"  ✗ Failed: {result.get('error') or 'Unknown error'}")
         results.append(result)
-        time.sleep(0.5)
+        # Mistral's free Experiment tier shares a ~1B-token/month cap across
+        # the whole catalog. Wait longer than the global default until we've
+        # confirmed we're not 429-cascading.
+        delay = 2.0 if provider == "mistral" else 0.5
+        time.sleep(delay)
 
     print()
     print("Compiling results...")
