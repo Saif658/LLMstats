@@ -706,7 +706,11 @@ function loadFromDb(db) {
 // ─── Data Processing ──────────────────────────────────────────────────────────
 function processData(data) {
   const runs = [...data.runs].reverse(); // chronological
-  const modelNames = [...new Set(runs.flatMap(r => r.models.map(m => m.model)))];
+  // Only show models that appeared in a recent run, so models removed from
+  // test_models.py don't persist on the dashboard forever.
+  const RECENT_RUNS_WINDOW = 5;
+  const recentRuns = runs.slice(-RECENT_RUNS_WINDOW);
+  const modelNames = [...new Set(recentRuns.flatMap(r => r.models.map(m => m.model)))];
   const modelStats = {};
 
   for (const model of modelNames) {
