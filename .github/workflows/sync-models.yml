@@ -1,0 +1,30 @@
+name: Sync OpenRouter Free Models
+
+on:
+  schedule:
+    - cron: "13 6 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Sync free model catalog
+        run: python3 benchmark/sync_openrouter_models.py
+
+      - name: Commit and push changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add benchmark/test_models.py
+          if ! git diff --cached --quiet; then
+            git commit -m "Sync OpenRouter free model list [skip ci]"
+            git push
+          else
+            echo "No model changes to commit"
+          fi
