@@ -57,12 +57,8 @@ PROVIDERS: dict[str, dict[str, Any]] = {
 # OpenRouter's free (:free-suffixed) catalog verified against
 # https://openrouter.ai/api/v1/models — covers 16 distinct upstream providers.
 OR_MODELS_BY_PROVIDER = {
-    "OpenRouter (their own gateway)":
-        ["openrouter/free", "openrouter/owl-alpha"],
     "OpenAI":
-        ["openai/gpt-oss-120b:free", "openai/gpt-oss-20b:free"],
-    "Meta":
-        ["meta-llama/llama-3.3-70b-instruct:free", "meta-llama/llama-3.2-3b-instruct:free"],
+        ["openai/gpt-oss-20b:free"],
     "NVIDIA":
         [
             "nvidia/nemotron-3-ultra-550b-a55b:free",
@@ -73,20 +69,22 @@ OR_MODELS_BY_PROVIDER = {
             "nvidia/nemotron-nano-9b-v2:free",
             "nvidia/nemotron-3.5-content-safety:free",
         ],
-    "Qwen":
-        ["qwen/qwen3-coder:free", "qwen/qwen3-next-80b-a3b-instruct:free"],
     "Google":
         ["google/gemma-4-26b-a4b-it:free"],
-    "Nous":
-        ["nousresearch/hermes-3-llama-3.1-405b:free"],
     "Poolside":
-        ["poolside/laguna-m.1:free", "poolside/laguna-xs.2:free"],
+        ["poolside/laguna-m.1:free"],
     "Cohere":
         ["cohere/north-mini-code:free"],
-    "Liquid":
-        ["liquid/lfm-2.5-1.2b-instruct:free", "liquid/lfm-2.5-1.2b-thinking:free"],
-    "Cognitive Computations":
-        ["cognitivecomputations/dolphin-mistral-24b-venice-edition:free"],
+    "Auto-added":
+        [
+            "google/gemma-4-31b-it:free",
+            "google/lyria-3-clip-preview:free",
+            "google/lyria-3-pro-preview:free",
+            "inclusionai/ling-3.0-flash:free",
+            "openrouter/free:free",
+            "poolside/laguna-s-2.1:free",
+            "poolside/laguna-xs-2.1:free",
+        ],
 }
 OPENROUTER_FREE_MODELS = [m for ms in OR_MODELS_BY_PROVIDER.values() for m in ms]
 
@@ -162,58 +160,51 @@ ALL_MODELS: list[tuple[str, str]] = (
 # Hand-tuned parallel-matrix split: both groups have ~half OpenRouter +
 # ~half Groq so neither serializes on the other.
 GROUP1_MODELS: list[tuple[str, str]] = [
-    # 13 OpenRouter + 4 Groq + 8 Mistral = 25
-    ("openrouter/free",                                          "openrouter"),
-    ("openrouter/owl-alpha",                                     "openrouter"),
-    ("openai/gpt-oss-120b:free",                                 "openrouter"),
-    ("openai/gpt-oss-20b:free",                                  "openrouter"),
-    ("nvidia/nemotron-3-ultra-550b-a55b:free",                   "openrouter"),
-    ("nvidia/nemotron-3-super-120b-a12b:free",                   "openrouter"),
-    ("nvidia/nemotron-3-nano-30b-a3b:free",                      "openrouter"),
-    ("nvidia/nemotron-nano-12b-v2-vl:free",                      "openrouter"),
-    ("nvidia/nemotron-nano-9b-v2:free",                          "openrouter"),
-    ("nvidia/nemotron-3.5-content-safety:free",                  "openrouter"),
-    ("meta-llama/llama-3.3-70b-instruct:free",                   "openrouter"),
-    ("google/gemma-4-26b-a4b-it:free",                           "openrouter"),
-    ("liquid/lfm-2.5-1.2b-instruct:free",                        "openrouter"),
-    ("llama-3.1-8b-instant",                                     "groq"),
-    ("qwen/qwen3-32b",                                           "groq"),
-    ("openai/gpt-oss-120b",                                      "groq"),
-    ("groq/compound-mini",                                       "groq"),
-    ("mistral-large-latest",                                     "mistral"),
-    ("mistral-medium-latest",                                    "mistral"),
-    ("mistral-small-latest",                                     "mistral"),
-    ("ministral-8b-latest",                                      "mistral"),
-    ("magistral-medium-latest",                                  "mistral"),
-    ("codestral-latest",                                         "mistral"),
-    ("devstral-latest",                                          "mistral"),
-    ("open-mixtral-8x22b",                                       "mistral"),
+    ("openai/gpt-oss-20b:free",                  "openrouter"),
+    ("nvidia/nemotron-3-ultra-550b-a55b:free",   "openrouter"),
+    ("nvidia/nemotron-3-super-120b-a12b:free",   "openrouter"),
+    ("nvidia/nemotron-3-nano-30b-a3b:free",      "openrouter"),
+    ("nvidia/nemotron-nano-12b-v2-vl:free",      "openrouter"),
+    ("nvidia/nemotron-nano-9b-v2:free",          "openrouter"),
+    ("nvidia/nemotron-3.5-content-safety:free",  "openrouter"),
+    ("google/gemma-4-26b-a4b-it:free",           "openrouter"),
+    ("llama-3.1-8b-instant",                     "groq"),
+    ("qwen/qwen3-32b",                           "groq"),
+    ("openai/gpt-oss-120b",                      "groq"),
+    ("groq/compound-mini",                       "groq"),
+    ("mistral-large-latest",                     "mistral"),
+    ("mistral-medium-latest",                    "mistral"),
+    ("mistral-small-latest",                     "mistral"),
+    ("ministral-8b-latest",                      "mistral"),
+    ("magistral-medium-latest",                  "mistral"),
+    ("codestral-latest",                         "mistral"),
+    ("devstral-latest",                          "mistral"),
+    ("open-mixtral-8x22b",                       "mistral"),
+    ("google/gemma-4-31b-it:free",               "openrouter"),
+    ("google/lyria-3-pro-preview:free",          "openrouter"),
+    ("openrouter/free:free",                     "openrouter"),
+    ("poolside/laguna-xs-2.1:free",              "openrouter"),
 ]
 
 GROUP2_MODELS: list[tuple[str, str]] = [
-    # 10 OpenRouter + 6 Groq + 6 Mistral = 22
-    ("nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free",       "openrouter"),
-    ("meta-llama/llama-3.2-3b-instruct:free",                    "openrouter"),
-    ("qwen/qwen3-coder:free",                                    "openrouter"),
-    ("qwen/qwen3-next-80b-a3b-instruct:free",                    "openrouter"),
-    ("nousresearch/hermes-3-llama-3.1-405b:free",                "openrouter"),
-    ("poolside/laguna-m.1:free",                                 "openrouter"),
-    ("poolside/laguna-xs.2:free",                                "openrouter"),
-    ("cohere/north-mini-code:free",                              "openrouter"),
-    ("liquid/lfm-2.5-1.2b-thinking:free",                        "openrouter"),
-    ("cognitivecomputations/dolphin-mistral-24b-venice-edition:free", "openrouter"),
-    ("meta-llama/llama-4-scout-17b-16e-instruct",                "groq"),
-    ("qwen/qwen3.6-27b",                                         "groq"),
-    ("openai/gpt-oss-20b",                                       "groq"),
-    ("openai/gpt-oss-safeguard-20b",                             "groq"),
-    ("groq/compound",                                            "groq"),
-    ("allam-2-7b",                                               "groq"),
-    ("mistral-tiny-latest",                                      "mistral"),
-    ("ministral-3b-latest",                                      "mistral"),
-    ("magistral-small-latest",                                   "mistral"),
-    ("devstral-small-latest",                                    "mistral"),
-    ("open-mistral-7b",                                          "mistral"),
-    ("open-mixtral-8x7b",                                        "mistral"),
+    ("nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free",  "openrouter"),
+    ("poolside/laguna-m.1:free",                            "openrouter"),
+    ("cohere/north-mini-code:free",                         "openrouter"),
+    ("meta-llama/llama-4-scout-17b-16e-instruct",           "groq"),
+    ("qwen/qwen3.6-27b",                                    "groq"),
+    ("openai/gpt-oss-20b",                                  "groq"),
+    ("openai/gpt-oss-safeguard-20b",                        "groq"),
+    ("groq/compound",                                       "groq"),
+    ("allam-2-7b",                                          "groq"),
+    ("mistral-tiny-latest",                                 "mistral"),
+    ("ministral-3b-latest",                                 "mistral"),
+    ("magistral-small-latest",                              "mistral"),
+    ("devstral-small-latest",                               "mistral"),
+    ("open-mistral-7b",                                     "mistral"),
+    ("open-mixtral-8x7b",                                   "mistral"),
+    ("google/lyria-3-clip-preview:free",                    "openrouter"),
+    ("inclusionai/ling-3.0-flash:free",                     "openrouter"),
+    ("poolside/laguna-s-2.1:free",                          "openrouter"),
 ]
 
 
