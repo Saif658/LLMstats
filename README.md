@@ -6,7 +6,6 @@
 
 [![Live Dashboard](https://img.shields.io/badge/🌐%20live-github.io-06b6d4?style=flat-square)](https://saif658.github.io/LLMstats/)
 [![Benchmark](https://img.shields.io/github/actions/workflow/status/Saif658/LLMstats/benchmark.yml?label=benchmarks&style=flat-square)](.github/workflows/benchmark.yml)
-[![License: MIT](https://img.shields.io/badge/license-MIT-yellow?style=flat-square)](LICENSE)
 
 **🌐 [saif658.github.io/LLMstats](https://saif658.github.io/LLMstats/)** — live, public, refreshes roughly every 3 hours
 
@@ -251,10 +250,6 @@ PRs and ideas welcome:
 - 📖 Docs / translations
 
 ---
-
-## 📄 License
-
-MIT — see [LICENSE](LICENSE).
 
 ---
 
