@@ -76,15 +76,7 @@ OR_MODELS_BY_PROVIDER = {
     "Cohere":
         ["cohere/north-mini-code:free"],
     "Auto-added":
-        [
-            "google/gemma-4-31b-it:free",
-            "google/lyria-3-clip-preview:free",
-            "google/lyria-3-pro-preview:free",
-            "inclusionai/ling-3.0-flash:free",
-            "openrouter/free:free",
-            "poolside/laguna-s-2.1:free",
-            "poolside/laguna-xs-2.1:free",
-        ],
+        ["openrouter/free"],
 }
 OPENROUTER_FREE_MODELS = [m for ms in OR_MODELS_BY_PROVIDER.values() for m in ms]
 
@@ -181,9 +173,8 @@ GROUP1_MODELS: list[tuple[str, str]] = [
     ("devstral-latest",                          "mistral"),
     ("open-mixtral-8x22b",                       "mistral"),
     ("google/gemma-4-31b-it:free",               "openrouter"),
-    ("google/lyria-3-pro-preview:free",          "openrouter"),
-    ("openrouter/free:free",                     "openrouter"),
     ("poolside/laguna-xs-2.1:free",              "openrouter"),
+    ("openrouter/free",                          "openrouter"),
 ]
 
 GROUP2_MODELS: list[tuple[str, str]] = [
@@ -202,7 +193,6 @@ GROUP2_MODELS: list[tuple[str, str]] = [
     ("devstral-small-latest",                               "mistral"),
     ("open-mistral-7b",                                     "mistral"),
     ("open-mixtral-8x7b",                                   "mistral"),
-    ("google/lyria-3-clip-preview:free",                    "openrouter"),
     ("inclusionai/ling-3.0-flash:free",                     "openrouter"),
     ("poolside/laguna-s-2.1:free",                          "openrouter"),
 ]
