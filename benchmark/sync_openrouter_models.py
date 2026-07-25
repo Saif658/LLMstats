@@ -18,7 +18,13 @@ OPENROUTER_API = "https://openrouter.ai/api/v1/models"
 
 
 def fetch_free_models() -> set[str]:
-    """Fetch all model IDs that are free (pricing = 0) from OpenRouter."""
+    """Fetch free text-in/text-out model IDs from OpenRouter.
+
+    A model is free when its pricing is zero, and is text-in/text-out
+    when its architecture.output_modalities is exactly ``["text"]``.
+    Uses ``model["id"]`` from the API response as-is — no suffix
+    manipulation.
+    """
     req = urllib.request.Request(
         OPENROUTER_API,
         headers={"User-Agent": "LLMstats/1.0 (+https://github.com/Saif658/LLMstats)"},
@@ -29,11 +35,12 @@ def fetch_free_models() -> set[str]:
     free = set()
     for model in data.get("data", []):
         pricing = model.get("pricing", {})
-        if pricing.get("prompt") == "0" and pricing.get("completion") == "0":
-            mid: str = model["id"]
-            if not mid.endswith(":free"):
-                mid = f"{mid}:free"
-            free.add(mid)
+        if not (pricing.get("prompt") == "0" and pricing.get("completion") == "0"):
+            continue
+        arch = model.get("architecture")
+        if arch is not None and arch.get("output_modalities", []) != ["text"]:
+            continue
+        free.add(model["id"])
     return free
 
 
