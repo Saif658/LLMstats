@@ -71,17 +71,10 @@ OR_MODELS_BY_PROVIDER = {
         ],
     "Google":
         ["google/gemma-4-26b-a4b-it:free"],
-    "Poolside":
-        ["poolside/laguna-m.1:free"],
     "Cohere":
         ["cohere/north-mini-code:free"],
     "Auto-added":
-        [
-            "google/gemma-4-31b-it:free",
-            "inclusionai/ling-3.0-flash:free",
-            "poolside/laguna-s-2.1:free",
-            "poolside/laguna-xs-2.1:free",
-        ],
+        ["openrouter/free"],
 }
 OPENROUTER_FREE_MODELS = [m for ms in OR_MODELS_BY_PROVIDER.values() for m in ms]
 
@@ -135,10 +128,8 @@ MISTRAL_MODELS = [
     "mistral-large-latest",
     "mistral-medium-latest",
     "mistral-small-latest",
-    "mistral-tiny-latest",
     "ministral-8b-latest",
     "ministral-3b-latest",
-    "magistral-medium-latest",
     "magistral-small-latest",
     "codestral-latest",
     "devstral-latest",
@@ -147,8 +138,6 @@ MISTRAL_MODELS = [
     "devstral-medium-latest",
     "labs-leanstral-1-5",
     "labs-leanstral-1-5-1",
-    "magistral-medium-2509",
-    "magistral-small-2509",
     "ministral-14b-2512",
     "ministral-14b-latest",
     "ministral-3b-2512",
@@ -164,14 +153,10 @@ MISTRAL_MODELS = [
     "mistral-medium-3",
     "mistral-medium-3-5",
     "mistral-medium-3.5",
-    "mistral-small-2506",
     "mistral-small-2603",
-    "mistral-tiny-2407",
     "mistral-vibe-cli-fast",
     "mistral-vibe-cli-latest",
     "mistral-vibe-cli-with-tools",
-    "open-mistral-nemo",
-    "open-mistral-nemo-2407",
 ]
 
 # (model_id, provider_name) pairs joined for convenience elsewhere.
@@ -199,7 +184,6 @@ GROUP1_MODELS: list[tuple[str, str]] = [
     ("mistral-medium-latest",                    "mistral"),
     ("mistral-small-latest",                     "mistral"),
     ("ministral-8b-latest",                      "mistral"),
-    ("magistral-medium-latest",                  "mistral"),
     ("codestral-latest",                         "mistral"),
     ("devstral-latest",                          "mistral"),
     ("google/gemma-4-31b-it:free",               "openrouter"),
@@ -210,7 +194,6 @@ GROUP1_MODELS: list[tuple[str, str]] = [
     ("devstral-medium-latest",                   "mistral"),
     ("inclusionai/ling-3.0-flash:free",          "openrouter"),
     ("labs-leanstral-1-5-1",                     "mistral"),
-    ("magistral-medium-2509",                    "mistral"),
     ("ministral-14b-2512",                       "mistral"),
     ("ministral-3b-2512",                        "mistral"),
     ("mistral-code-agent-latest",                "mistral"),
@@ -222,20 +205,18 @@ GROUP1_MODELS: list[tuple[str, str]] = [
     ("mistral-small-2603",                       "mistral"),
     ("mistral-vibe-cli-fast",                    "mistral"),
     ("mistral-vibe-cli-with-tools",              "mistral"),
-    ("open-mistral-nemo-2407",                   "mistral"),
     ("poolside/laguna-xs-2.1:free",              "openrouter"),
+    ("openrouter/free",                          "openrouter"),
 ]
 
 GROUP2_MODELS: list[tuple[str, str]] = [
     ("nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free",  "openrouter"),
-    ("poolside/laguna-m.1:free",                            "openrouter"),
     ("cohere/north-mini-code:free",                         "openrouter"),
     ("qwen/qwen3.6-27b",                                    "groq"),
     ("openai/gpt-oss-20b",                                  "groq"),
     ("openai/gpt-oss-safeguard-20b",                        "groq"),
     ("groq/compound",                                       "groq"),
     ("allam-2-7b",                                          "groq"),
-    ("mistral-tiny-latest",                                 "mistral"),
     ("ministral-3b-latest",                                 "mistral"),
     ("magistral-small-latest",                              "mistral"),
     ("inclusionai/ling-3.0-flash:free",                     "openrouter"),
@@ -245,7 +226,6 @@ GROUP2_MODELS: list[tuple[str, str]] = [
     ("google/gemma-4-31b-it:free",                          "openrouter"),
     ("labs-leanstral-1-5",                                  "mistral"),
     ("llama-3.3-70b-versatile",                             "groq"),
-    ("magistral-small-2509",                                "mistral"),
     ("ministral-14b-latest",                                "mistral"),
     ("ministral-8b-2512",                                   "mistral"),
     ("mistral-code-fim-latest",                             "mistral"),
@@ -253,10 +233,7 @@ GROUP2_MODELS: list[tuple[str, str]] = [
     ("mistral-medium-2505",                                 "mistral"),
     ("mistral-medium-2604",                                 "mistral"),
     ("mistral-medium-3-5",                                  "mistral"),
-    ("mistral-small-2506",                                  "mistral"),
-    ("mistral-tiny-2407",                                   "mistral"),
     ("mistral-vibe-cli-latest",                             "mistral"),
-    ("open-mistral-nemo",                                   "mistral"),
     ("poolside/laguna-s-2.1:free",                          "openrouter"),
 ]
 
