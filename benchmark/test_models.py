@@ -74,7 +74,12 @@ OR_MODELS_BY_PROVIDER = {
     "Cohere":
         ["cohere/north-mini-code:free"],
     "Auto-added":
-        ["openrouter/free"],
+        [
+            "google/gemma-4-31b-it:free",
+            "inclusionai/ling-3.0-tiny:free",
+            "poolside/laguna-s-2.1:free",
+            "poolside/laguna-xs-2.1:free",
+        ],
 }
 OPENROUTER_FREE_MODELS = [m for ms in OR_MODELS_BY_PROVIDER.values() for m in ms]
 
@@ -207,6 +212,8 @@ GROUP1_MODELS: list[tuple[str, str]] = [
     ("mistral-vibe-cli-with-tools",              "mistral"),
     ("poolside/laguna-xs-2.1:free",              "openrouter"),
     ("openrouter/free",                          "openrouter"),
+    ("google/gemma-4-31b-it:free",               "openrouter"),
+    ("poolside/laguna-s-2.1:free",               "openrouter"),
 ]
 
 GROUP2_MODELS: list[tuple[str, str]] = [
@@ -235,6 +242,8 @@ GROUP2_MODELS: list[tuple[str, str]] = [
     ("mistral-medium-3-5",                                  "mistral"),
     ("mistral-vibe-cli-latest",                             "mistral"),
     ("poolside/laguna-s-2.1:free",                          "openrouter"),
+    ("inclusionai/ling-3.0-tiny:free",                      "openrouter"),
+    ("poolside/laguna-xs-2.1:free",                         "openrouter"),
 ]
 
 
