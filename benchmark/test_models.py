@@ -75,10 +75,11 @@ OR_MODELS_BY_PROVIDER = {
         ["cohere/north-mini-code:free"],
     "Auto-added":
         [
-            "google/gemma-4-31b-it:free",
-            "inclusionai/ling-3.0-tiny:free",
-            "poolside/laguna-s-2.1:free",
-            "poolside/laguna-xs-2.1:free",
+            "dots-studio/dots-3-note-preview:free",
+            "liquid/lfm-2.5-2.6b:free",
+            "nvidia/nemotron-3.5-lightning:free",
+            "openrouter/free",
+            "z-ai/glm-5.2:free",
         ],
 }
 OPENROUTER_FREE_MODELS = [m for ms in OR_MODELS_BY_PROVIDER.values() for m in ms]
@@ -162,6 +163,8 @@ MISTRAL_MODELS = [
     "mistral-vibe-cli-fast",
     "mistral-vibe-cli-latest",
     "mistral-vibe-cli-with-tools",
+    "glm-5-2",
+    "zai-glm-5-2",
 ]
 
 # (model_id, provider_name) pairs joined for convenience elsewhere.
@@ -214,6 +217,10 @@ GROUP1_MODELS: list[tuple[str, str]] = [
     ("openrouter/free",                          "openrouter"),
     ("google/gemma-4-31b-it:free",               "openrouter"),
     ("poolside/laguna-s-2.1:free",               "openrouter"),
+    ("dots-studio/dots-3-note-preview:free",     "openrouter"),
+    ("liquid/lfm-2.5-2.6b:free",                 "openrouter"),
+    ("openrouter/free",                          "openrouter"),
+    ("zai-glm-5-2",                              "mistral"),
 ]
 
 GROUP2_MODELS: list[tuple[str, str]] = [
@@ -242,8 +249,10 @@ GROUP2_MODELS: list[tuple[str, str]] = [
     ("mistral-medium-3-5",                                  "mistral"),
     ("mistral-vibe-cli-latest",                             "mistral"),
     ("poolside/laguna-s-2.1:free",                          "openrouter"),
-    ("inclusionai/ling-3.0-tiny:free",                      "openrouter"),
     ("poolside/laguna-xs-2.1:free",                         "openrouter"),
+    ("glm-5-2",                                             "mistral"),
+    ("nvidia/nemotron-3.5-lightning:free",                  "openrouter"),
+    ("z-ai/glm-5.2:free",                                   "openrouter"),
 ]
 
 
