@@ -57,8 +57,6 @@ PROVIDERS: dict[str, dict[str, Any]] = {
 # OpenRouter's free (:free-suffixed) catalog verified against
 # https://openrouter.ai/api/v1/models — covers 16 distinct upstream providers.
 OR_MODELS_BY_PROVIDER = {
-    "OpenAI":
-        ["openai/gpt-oss-20b:free"],
     "NVIDIA":
         [
             "nvidia/nemotron-3-ultra-550b-a55b:free",
@@ -75,11 +73,12 @@ OR_MODELS_BY_PROVIDER = {
         ["cohere/north-mini-code:free"],
     "Auto-added":
         [
-            "dots-studio/dots-3-note-preview:free",
-            "liquid/lfm-2.5-2.6b:free",
-            "nvidia/nemotron-3.5-lightning:free",
-            "openrouter/free",
-            "z-ai/glm-5.2:free",
+            "google/gemma-4-31b-it:free",
+            "poolside/laguna-s-2.1:free",
+            "poolside/laguna-xs-2.1:free",
+            "stealth/ox-alpha",
+            "thinkingmachines/inkling-small:free",
+            "thinkingmachines/inkling:free",
         ],
 }
 OPENROUTER_FREE_MODELS = [m for ms in OR_MODELS_BY_PROVIDER.values() for m in ms]
@@ -87,7 +86,6 @@ OPENROUTER_FREE_MODELS = [m for ms in OR_MODELS_BY_PROVIDER.values() for m in ms
 # Verified-valid Groq chat models in mid-2026 (whisper + prompt-guard skipped
 # — those are audio / classification, not chat).
 GROQ_MODELS = [
-    "llama-3.1-8b-instant",
     "qwen/qwen3.6-27b",
     "openai/gpt-oss-120b",
     "openai/gpt-oss-20b",
@@ -97,7 +95,6 @@ GROQ_MODELS = [
     "allam-2-7b",
     "canopylabs/orpheus-arabic-saudi",
     "canopylabs/orpheus-v1-english",
-    "llama-3.3-70b-versatile",
 ]
 
 
@@ -165,6 +162,7 @@ MISTRAL_MODELS = [
     "mistral-vibe-cli-with-tools",
     "glm-5-2",
     "zai-glm-5-2",
+    "magistral-medium-latest",
 ]
 
 # (model_id, provider_name) pairs joined for convenience elsewhere.
@@ -177,7 +175,6 @@ ALL_MODELS: list[tuple[str, str]] = (
 # Hand-tuned parallel-matrix split: both groups have ~half OpenRouter +
 # ~half Groq so neither serializes on the other.
 GROUP1_MODELS: list[tuple[str, str]] = [
-    ("openai/gpt-oss-20b:free",                  "openrouter"),
     ("nvidia/nemotron-3-ultra-550b-a55b:free",   "openrouter"),
     ("nvidia/nemotron-3-super-120b-a12b:free",   "openrouter"),
     ("nvidia/nemotron-3-nano-30b-a3b:free",      "openrouter"),
@@ -185,7 +182,6 @@ GROUP1_MODELS: list[tuple[str, str]] = [
     ("nvidia/nemotron-nano-9b-v2:free",          "openrouter"),
     ("nvidia/nemotron-3.5-content-safety:free",  "openrouter"),
     ("google/gemma-4-26b-a4b-it:free",           "openrouter"),
-    ("llama-3.1-8b-instant",                     "groq"),
     ("openai/gpt-oss-120b",                      "groq"),
     ("groq/compound-mini",                       "groq"),
     ("mistral-large-latest",                     "mistral"),
@@ -221,6 +217,10 @@ GROUP1_MODELS: list[tuple[str, str]] = [
     ("liquid/lfm-2.5-2.6b:free",                 "openrouter"),
     ("openrouter/free",                          "openrouter"),
     ("zai-glm-5-2",                              "mistral"),
+    ("google/gemma-4-31b-it:free",               "openrouter"),
+    ("poolside/laguna-s-2.1:free",               "openrouter"),
+    ("stealth/ox-alpha",                         "openrouter"),
+    ("thinkingmachines/inkling:free",            "openrouter"),
 ]
 
 GROUP2_MODELS: list[tuple[str, str]] = [
@@ -239,7 +239,6 @@ GROUP2_MODELS: list[tuple[str, str]] = [
     ("devstral-2512",                                       "mistral"),
     ("google/gemma-4-31b-it:free",                          "openrouter"),
     ("labs-leanstral-1-5",                                  "mistral"),
-    ("llama-3.3-70b-versatile",                             "groq"),
     ("ministral-14b-latest",                                "mistral"),
     ("ministral-8b-2512",                                   "mistral"),
     ("mistral-code-fim-latest",                             "mistral"),
@@ -253,6 +252,9 @@ GROUP2_MODELS: list[tuple[str, str]] = [
     ("glm-5-2",                                             "mistral"),
     ("nvidia/nemotron-3.5-lightning:free",                  "openrouter"),
     ("z-ai/glm-5.2:free",                                   "openrouter"),
+    ("magistral-medium-latest",                             "mistral"),
+    ("poolside/laguna-xs-2.1:free",                         "openrouter"),
+    ("thinkingmachines/inkling-small:free",                 "openrouter"),
 ]
 
 
