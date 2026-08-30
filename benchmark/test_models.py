@@ -61,10 +61,7 @@ OR_MODELS_BY_PROVIDER = {
         [
             "nvidia/nemotron-3-ultra-550b-a55b:free",
             "nvidia/nemotron-3-super-120b-a12b:free",
-            "nvidia/nemotron-3-nano-30b-a3b:free",
             "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free",
-            "nvidia/nemotron-nano-12b-v2-vl:free",
-            "nvidia/nemotron-nano-9b-v2:free",
             "nvidia/nemotron-3.5-content-safety:free",
         ],
     "Google":
@@ -73,12 +70,14 @@ OR_MODELS_BY_PROVIDER = {
         ["cohere/north-mini-code:free"],
     "Auto-added":
         [
-            "google/gemma-4-31b-it:free",
-            "poolside/laguna-s-2.1:free",
-            "poolside/laguna-xs-2.1:free",
-            "stealth/ox-alpha",
-            "thinkingmachines/inkling-small:free",
-            "thinkingmachines/inkling:free",
+            "dots-studio/dots-3-note-preview:free",
+            "inclusionai/ling-3.0-flash-fin:free",
+            "liquid/lfm-2.5-2.6b:free",
+            "minimax/minimax-m2.7:free",
+            "minimax/minimax-m3:free",
+            "nvidia/nemotron-3.5-lightning:free",
+            "openrouter/free",
+            "z-ai/glm-5.2:free",
         ],
 }
 OPENROUTER_FREE_MODELS = [m for ms in OR_MODELS_BY_PROVIDER.values() for m in ms]
@@ -95,6 +94,7 @@ GROQ_MODELS = [
     "allam-2-7b",
     "canopylabs/orpheus-arabic-saudi",
     "canopylabs/orpheus-v1-english",
+    "qwen/qwen3.8-27b",
 ]
 
 
@@ -160,8 +160,6 @@ MISTRAL_MODELS = [
     "mistral-vibe-cli-fast",
     "mistral-vibe-cli-latest",
     "mistral-vibe-cli-with-tools",
-    "glm-5-2",
-    "zai-glm-5-2",
     "magistral-medium-latest",
 ]
 
@@ -177,9 +175,6 @@ ALL_MODELS: list[tuple[str, str]] = (
 GROUP1_MODELS: list[tuple[str, str]] = [
     ("nvidia/nemotron-3-ultra-550b-a55b:free",   "openrouter"),
     ("nvidia/nemotron-3-super-120b-a12b:free",   "openrouter"),
-    ("nvidia/nemotron-3-nano-30b-a3b:free",      "openrouter"),
-    ("nvidia/nemotron-nano-12b-v2-vl:free",      "openrouter"),
-    ("nvidia/nemotron-nano-9b-v2:free",          "openrouter"),
     ("nvidia/nemotron-3.5-content-safety:free",  "openrouter"),
     ("google/gemma-4-26b-a4b-it:free",           "openrouter"),
     ("openai/gpt-oss-120b",                      "groq"),
@@ -216,11 +211,14 @@ GROUP1_MODELS: list[tuple[str, str]] = [
     ("dots-studio/dots-3-note-preview:free",     "openrouter"),
     ("liquid/lfm-2.5-2.6b:free",                 "openrouter"),
     ("openrouter/free",                          "openrouter"),
-    ("zai-glm-5-2",                              "mistral"),
     ("google/gemma-4-31b-it:free",               "openrouter"),
     ("poolside/laguna-s-2.1:free",               "openrouter"),
-    ("stealth/ox-alpha",                         "openrouter"),
     ("thinkingmachines/inkling:free",            "openrouter"),
+    ("dots-studio/dots-3-note-preview:free",     "openrouter"),
+    ("liquid/lfm-2.5-2.6b:free",                 "openrouter"),
+    ("minimax/minimax-m3:free",                  "openrouter"),
+    ("openrouter/free",                          "openrouter"),
+    ("z-ai/glm-5.2:free",                        "openrouter"),
 ]
 
 GROUP2_MODELS: list[tuple[str, str]] = [
@@ -249,12 +247,15 @@ GROUP2_MODELS: list[tuple[str, str]] = [
     ("mistral-vibe-cli-latest",                             "mistral"),
     ("poolside/laguna-s-2.1:free",                          "openrouter"),
     ("poolside/laguna-xs-2.1:free",                         "openrouter"),
-    ("glm-5-2",                                             "mistral"),
     ("nvidia/nemotron-3.5-lightning:free",                  "openrouter"),
     ("z-ai/glm-5.2:free",                                   "openrouter"),
     ("magistral-medium-latest",                             "mistral"),
     ("poolside/laguna-xs-2.1:free",                         "openrouter"),
     ("thinkingmachines/inkling-small:free",                 "openrouter"),
+    ("inclusionai/ling-3.0-flash-fin:free",                 "openrouter"),
+    ("minimax/minimax-m2.7:free",                           "openrouter"),
+    ("nvidia/nemotron-3.5-lightning:free",                  "openrouter"),
+    ("qwen/qwen3.8-27b",                                    "groq"),
 ]
 
 
