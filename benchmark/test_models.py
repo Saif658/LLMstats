@@ -70,14 +70,11 @@ OR_MODELS_BY_PROVIDER = {
         ["cohere/north-mini-code:free"],
     "Auto-added":
         [
-            "dots-studio/dots-3-note-preview:free",
-            "inclusionai/ling-3.0-flash-fin:free",
-            "liquid/lfm-2.5-2.6b:free",
-            "minimax/minimax-m2.7:free",
-            "minimax/minimax-m3:free",
-            "nvidia/nemotron-3.5-lightning:free",
-            "openrouter/free",
-            "z-ai/glm-5.2:free",
+            "google/gemma-4-31b-it:free",
+            "poolside/laguna-s-2.1:free",
+            "poolside/laguna-xs-2.1:free",
+            "thinkingmachines/inkling-small:free",
+            "thinkingmachines/inkling:free",
         ],
 }
 OPENROUTER_FREE_MODELS = [m for ms in OR_MODELS_BY_PROVIDER.values() for m in ms]
@@ -128,7 +125,6 @@ def fetch_mistral_models(api_key: str) -> list[str]:
 # 2026-06-27). Snapshot rather than fetching every run so benchmark history
 # stays comparable run-to-run, the same reasoning as NVIDIA.
 MISTRAL_MODELS = [
-    "mistral-large-latest",
     "mistral-medium-latest",
     "mistral-small-latest",
     "ministral-8b-latest",
@@ -144,7 +140,6 @@ MISTRAL_MODELS = [
     "ministral-8b-2512",
     "mistral-code-fim-latest",
     "mistral-code-latest",
-    "mistral-large-2512",
     "mistral-medium",
     "mistral-medium-2604",
     "mistral-medium-3",
@@ -173,7 +168,6 @@ GROUP1_MODELS: list[tuple[str, str]] = [
     ("google/gemma-4-26b-a4b-it:free",           "openrouter"),
     ("openai/gpt-oss-120b",                      "groq"),
     ("groq/compound-mini",                       "groq"),
-    ("mistral-large-latest",                     "mistral"),
     ("mistral-medium-latest",                    "mistral"),
     ("mistral-small-latest",                     "mistral"),
     ("ministral-8b-latest",                      "mistral"),
@@ -223,6 +217,9 @@ GROUP1_MODELS: list[tuple[str, str]] = [
     ("liquid/lfm-2.5-2.6b:free",                 "openrouter"),
     ("minimax/minimax-m3:free",                  "openrouter"),
     ("openrouter/free",                          "openrouter"),
+    ("google/gemma-4-31b-it:free",               "openrouter"),
+    ("poolside/laguna-xs-2.1:free",              "openrouter"),
+    ("thinkingmachines/inkling:free",            "openrouter"),
 ]
 
 GROUP2_MODELS: list[tuple[str, str]] = [
@@ -243,7 +240,6 @@ GROUP2_MODELS: list[tuple[str, str]] = [
     ("ministral-14b-latest",                                "mistral"),
     ("ministral-8b-2512",                                   "mistral"),
     ("mistral-code-fim-latest",                             "mistral"),
-    ("mistral-large-2512",                                  "mistral"),
     ("mistral-medium-2604",                                 "mistral"),
     ("mistral-medium-3-5",                                  "mistral"),
     ("mistral-vibe-cli-latest",                             "mistral"),
@@ -270,6 +266,8 @@ GROUP2_MODELS: list[tuple[str, str]] = [
     ("minimax/minimax-m2.7:free",                           "openrouter"),
     ("nvidia/nemotron-3.5-lightning:free",                  "openrouter"),
     ("z-ai/glm-5.2:free",                                   "openrouter"),
+    ("poolside/laguna-s-2.1:free",                          "openrouter"),
+    ("thinkingmachines/inkling-small:free",                 "openrouter"),
 ]
 
 
