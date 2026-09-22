@@ -70,15 +70,13 @@ OR_MODELS_BY_PROVIDER = {
         ["cohere/north-mini-code:free"],
     "Auto-added":
         [
-            "dots-studio/dots-3-note-preview:free",
-            "inclusionai/ling-3.0-flash-fin:free",
-            "inclusionai/ling-3.0-flash-sante:free",
-            "inclusionai/ling-3.0-flash-vl:free",
-            "liquid/lfm-2.5-2.6b:free",
-            "nex-agi/nex-n2.5-mini:free",
-            "nex-agi/nex-n2.5-pro:free",
-            "nvidia/nemotron-3.5-lightning:free",
-            "openrouter/free",
+            "google/gemma-4-31b-it:free",
+            "poolside/laguna-s-2.1:free",
+            "poolside/laguna-xs-2.1:free",
+            "qwen/qwen3.8-27b:free",
+            "thinkingmachines/inkling-small:free",
+            "thinkingmachines/inkling:free",
+            "z-ai/glm-5.2:free",
         ],
 }
 OPENROUTER_FREE_MODELS = [m for ms in OR_MODELS_BY_PROVIDER.values() for m in ms]
@@ -89,8 +87,6 @@ GROQ_MODELS = [
     "openai/gpt-oss-120b",
     "openai/gpt-oss-20b",
     "openai/gpt-oss-safeguard-20b",
-    "groq/compound",
-    "groq/compound-mini",
     "allam-2-7b",
     "canopylabs/orpheus-arabic-saudi",
     "canopylabs/orpheus-v1-english",
@@ -170,7 +166,6 @@ GROUP1_MODELS: list[tuple[str, str]] = [
     ("nvidia/nemotron-3.5-content-safety:free",  "openrouter"),
     ("google/gemma-4-26b-a4b-it:free",           "openrouter"),
     ("openai/gpt-oss-120b",                      "groq"),
-    ("groq/compound-mini",                       "groq"),
     ("mistral-medium-latest",                    "mistral"),
     ("mistral-small-latest",                     "mistral"),
     ("ministral-8b-latest",                      "mistral"),
@@ -287,6 +282,10 @@ GROUP1_MODELS: list[tuple[str, str]] = [
     ("liquid/lfm-2.5-2.6b:free",                 "openrouter"),
     ("nex-agi/nex-n2.5-pro:free",                "openrouter"),
     ("openrouter/free",                          "openrouter"),
+    ("google/gemma-4-31b-it:free",               "openrouter"),
+    ("poolside/laguna-xs-2.1:free",              "openrouter"),
+    ("thinkingmachines/inkling-small:free",      "openrouter"),
+    ("z-ai/glm-5.2:free",                        "openrouter"),
 ]
 
 GROUP2_MODELS: list[tuple[str, str]] = [
@@ -294,7 +293,6 @@ GROUP2_MODELS: list[tuple[str, str]] = [
     ("cohere/north-mini-code:free",                         "openrouter"),
     ("openai/gpt-oss-20b",                                  "groq"),
     ("openai/gpt-oss-safeguard-20b",                        "groq"),
-    ("groq/compound",                                       "groq"),
     ("allam-2-7b",                                          "groq"),
     ("ministral-3b-latest",                                 "mistral"),
     ("magistral-small-latest",                              "mistral"),
@@ -385,6 +383,9 @@ GROUP2_MODELS: list[tuple[str, str]] = [
     ("inclusionai/ling-3.0-flash-vl:free",                  "openrouter"),
     ("nex-agi/nex-n2.5-mini:free",                          "openrouter"),
     ("nvidia/nemotron-3.5-lightning:free",                  "openrouter"),
+    ("poolside/laguna-s-2.1:free",                          "openrouter"),
+    ("qwen/qwen3.8-27b:free",                               "openrouter"),
+    ("thinkingmachines/inkling:free",                       "openrouter"),
 ]
 
 
