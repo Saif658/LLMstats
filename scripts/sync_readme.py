@@ -219,8 +219,11 @@ def main() -> int:
 
     total = len(or_rows) + len(groq_models) + len(mistral_models)
     or_upstreams = len({label for label, _ in or_rows})
-    group1_size = len(catalog["GROUP1_MODELS"])
-    group2_size = len(catalog["GROUP2_MODELS"])
+    # The diagram shows distinct models per job. The GROUP lists can contain
+    # the same model many times (benchmark scheduling), so dedupe before
+    # counting, like the README's headline model totals.
+    group1_size = len({model for model, _ in catalog["GROUP1_MODELS"]})
+    group2_size = len({model for model, _ in catalog["GROUP2_MODELS"]})
 
     text = README.read_text(encoding="utf-8")
 
