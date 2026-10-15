@@ -6,6 +6,11 @@ on:
       - main
     paths:
       - "benchmark/test_models.py"
+  # The daily catalog sync commits with "[skip ci]", which suppresses the push
+  # trigger above. Firing on the workflow's completion catches those runs too.
+  workflow_run:
+    workflows: ["Sync Free Models"]
+    types: [completed]
   workflow_dispatch:
 
 permissions:
