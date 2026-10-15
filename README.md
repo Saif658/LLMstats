@@ -17,7 +17,7 @@
 
 ## ✨ What is LLMstats?
 
-**LLMstats** automatically benchmarks **47 free-tier models** roughly every 3 hours — **23 served by [OpenRouter](https://openrouter.ai/) (the unified router, 11 upstream providers), 10 by [Groq](https://groq.com/) (the LPU cloud), and 14 by [Mistral](https://mistral.ai/) (Experiment tier)** — and publishes the results to a live, interactive dashboard. No servers, no subscriptions — just fork the repo, drop in three API keys, and go.
+**LLMstats** automatically benchmarks **56 free-tier models** roughly every 3 hours — **15 served by [OpenRouter](https://openrouter.ai/) (the unified router, 6 upstream providers), 7 by [Groq](https://groq.com/) (the LPU cloud), and 34 by [Mistral](https://mistral.ai/) (Experiment tier)** — and publishes the results to a live, interactive dashboard. No servers, no subscriptions — just fork the repo, drop in three API keys, and go.
 
 | 🏎️ Every ~3h | 📊 Interactive Charts | 🔁 Zero Infra | 🔀 Multi-Provider |
 |:---:|:---:|:---:|:---:|
@@ -81,67 +81,81 @@ The dashboard auto-refreshes roughly every 3 hours after that. ✨
 ## 🤖 Benchmarked models (free tier)
 
 <details>
-<summary><b>47 models across 3 gateways, 14+ upstream providers</b</summary>
+<summary><b>56 models across 3 gateways, 9+ upstream providers</b</summary>
 
-### 🟣 OpenRouter · 23 models · 11 upstream providers
+<!-- OPENROUTER_MODELS:START -->
+### 🟣 OpenRouter · 15 models · 6 upstream providers
 | Upstream | Model | Note |
 |----------|-------|------|
-| **OpenRouter** | `openrouter/free` | OR's own free flagship |
-| **OpenRouter** | `openrouter/owl-alpha` | OR preview alpha |
-| **OpenAI**     | `openai/gpt-oss-120b:free` | Open-source 120B |
-| **OpenAI**     | `openai/gpt-oss-20b:free`  | Open-source 20B |
-| **Meta**       | `meta-llama/llama-3.3-70b-instruct:free` | Large general-purpose |
-| **Meta**       | `meta-llama/llama-3.2-3b-instruct:free`  | Lightweight Llama |
-| **NVIDIA**     | `nvidia/nemotron-3-ultra-550b-a55b:free`               | 550B MoE flagship |
-| **NVIDIA**     | `nvidia/nemotron-3-super-120b-a12b:free`                | 120B MoE super |
-| **NVIDIA**     | `nvidia/nemotron-3-nano-30b-a3b:free`                   | Compact MoE |
-| **NVIDIA**     | `nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free`    | Compact reasoning |
-| **NVIDIA**     | `nvidia/nemotron-nano-12b-v2-vl:free`                   | Vision-language |
-| **NVIDIA**     | `nvidia/nemotron-nano-9b-v2:free`                       | Compact 9B |
-| **NVIDIA**     | `nvidia/nemotron-3.5-content-safety:free`               | Content safety guard |
-| **Qwen**       | `qwen/qwen3-coder:free`                | Qwen 3 coding |
-| **Qwen**       | `qwen/qwen3-next-80b-a3b-instruct:free` | Qwen 3 80B MoE |
-| **Google**     | `google/gemma-4-26b-a4b-it:free`        | Gemma 4 mid-size |
-| **Nous**       | `nousresearch/hermes-3-llama-3.1-405b:free` | Hermes 3 405B |
-| **Nex AGI**    | `nex-agi/nex-n2-pro:free`               | Nex N2 Pro |
-| **Poolside**   | `poolside/laguna-m.1:free`              | Laguna m.1 |
-| **Poolside**   | `poolside/laguna-xs.2:free`             | Laguna xs.2 |
-| **Cohere**     | `cohere/north-mini-code:free`           | Cohere North mini-code |
-| **Liquid**     | `liquid/lfm-2.5-1.2b-instruct:free`     | Liquid LFM 2.5 1.2B |
-| **Liquid**     | `liquid/lfm-2.5-1.2b-thinking:free`     | Liquid LFM 2.5 1.2B thinking |
-| **Cognitive Computations** | `cognitivecomputations/dolphin-mistral-24b-venice-edition:free` | Dolphin Mistral 24B Venice |
+| **NVIDIA** | `nvidia/nemotron-3-ultra-550b-a55b:free` | 550B MoE flagship |
+| **NVIDIA** | `nvidia/nemotron-3-super-120b-a12b:free` | 120B MoE super |
+| **NVIDIA** | `nvidia/nemotron-3-nano-30b-a3b:free` | Compact MoE |
+| **NVIDIA** | `nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free` | Compact reasoning |
+| **NVIDIA** | `nvidia/nemotron-nano-12b-v2-vl:free` | Vision-language |
+| **NVIDIA** | `nvidia/nemotron-nano-9b-v2:free` | Compact 9B |
+| **NVIDIA** | `nvidia/nemotron-3.5-content-safety:free` | Content safety guard |
+| **Google** | `google/gemma-4-26b-a4b-it:free` | Gemma 4 mid-size |
+| **Google** | `google/gemma-4-31b-it:free` | New model |
+| **Cohere** | `cohere/north-mini-code:free` | Cohere North mini-code |
+| **Poolside** | `poolside/laguna-s-2.1:free` | New model |
+| **Poolside** | `poolside/laguna-xs-2.1:free` | New model |
+| **Stealth** | `stealth/ox-alpha` | New model |
+| **Thinking Machines** | `thinkingmachines/inkling-small:free` | New model |
+| **Thinking Machines** | `thinkingmachines/inkling:free` | New model |
+<!-- OPENROUTER_MODELS:END -->
 
-### 🟠 Groq · 10 chat models
+<!-- GROQ_MODELS:START -->
+### 🟠 Groq · 7 chat models
 | Model | Note |
 |-------|------|
-| `llama-3.1-8b-instant`                     | Ultra-low latency |
-| `meta-llama/llama-4-scout-17b-16e-instruct` | Llama 4 Scout MoE |
-| `qwen/qwen3-32b`                           | Qwen 3 flagship |
-| `qwen/qwen3.6-27b`                         | Qwen 3.6 mid-size |
-| `openai/gpt-oss-120b`                      | Open-source 120B |
-| `openai/gpt-oss-20b`                       | Open-source 20B |
-| `openai/gpt-oss-safeguard-20b`             | Safety-guard 20B |
-| `groq/compound`                            | Groq compound agentic |
-| `groq/compound-mini`                       | Groq compound-mini agentic |
-| `allam-2-7b`                               | Allam (small MoE) |
+| `qwen/qwen3.6-27b` | Qwen 3.6 mid-size |
+| `openai/gpt-oss-120b` | Open-source 120B |
+| `openai/gpt-oss-20b` | Open-source 20B |
+| `openai/gpt-oss-safeguard-20b` | Safety-guard 20B |
+| `groq/compound` | Groq compound agentic |
+| `groq/compound-mini` | Groq compound-mini agentic |
+| `allam-2-7b` | Allam (small MoE) |
+<!-- GROQ_MODELS:END -->
 
-### 🔵 Mistral · 14 chat models (Experiment tier)
+<!-- MISTRAL_MODELS:START -->
+### 🔵 Mistral · 34 chat models (Experiment tier)
 | Model | Note |
 |-------|------|
-| `mistral-large-latest`                     | Mistral Large flagship |
-| `mistral-medium-latest`                    | Mistral Medium |
-| `mistral-small-latest`                     | Mistral Small |
-| `mistral-tiny-latest`                      | Mistral Tiny |
-| `ministral-8b-latest`                      | Ministral 8B |
-| `ministral-3b-latest`                      | Ministral 3B |
-| `magistral-medium-latest`                  | Magistral medium |
-| `magistral-small-latest`                   | Magistral small |
-| `codestral-latest`                         | Code-specialized |
-| `devstral-latest`                          | Developer agent |
-| `devstral-small-latest`                    | Developer agent small |
-| `open-mistral-7b`                          | Open 7B |
-| `open-mixtral-8x7b`                        | Open MoE 8×7B |
-| `open-mixtral-8x22b`                       | Open MoE 8×22B |
+| `mistral-large-latest` | Mistral Large flagship |
+| `mistral-medium-latest` | Mistral Medium |
+| `mistral-small-latest` | Mistral Small |
+| `ministral-8b-latest` | Ministral 8B |
+| `ministral-3b-latest` | Ministral 3B |
+| `magistral-small-latest` | Magistral small |
+| `codestral-latest` | Code-specialized |
+| `devstral-latest` | Developer agent |
+| `codestral-2508` | New model |
+| `devstral-2512` | New model |
+| `devstral-medium-latest` | New model |
+| `labs-leanstral-1-5` | New model |
+| `labs-leanstral-1-5-1` | New model |
+| `ministral-14b-2512` | New model |
+| `ministral-14b-latest` | New model |
+| `ministral-3b-2512` | New model |
+| `ministral-8b-2512` | New model |
+| `mistral-code-agent-latest` | New model |
+| `mistral-code-latest` | New model |
+| `mistral-large-2512` | New model |
+| `mistral-medium` | New model |
+| `mistral-medium-2505` | New model |
+| `mistral-medium-2508` | New model |
+| `mistral-medium-2604` | New model |
+| `mistral-medium-3` | New model |
+| `mistral-medium-3-5` | New model |
+| `mistral-medium-3.5` | New model |
+| `mistral-small-2603` | New model |
+| `mistral-vibe-cli-fast` | New model |
+| `mistral-vibe-cli-latest` | New model |
+| `mistral-vibe-cli-with-tools` | New model |
+| `glm-5-2` | New model |
+| `zai-glm-5-2` | New model |
+| `magistral-medium-latest` | Magistral medium |
+<!-- MISTRAL_MODELS:END -->
 
 </details>
 
@@ -154,7 +168,7 @@ The dashboard auto-refreshes roughly every 3 hours after that. ✨
 │                                                                          │
 │   ┌─────────────────────┐         ┌─────────────────────┐                │
 │   │  Job 1 — Group A    │         │  Job 2 — Group B    │  in parallel    │
-│   │  25 models (mixed)  │         │  22 models (mixed)  │                │
+│   │  46 models (mixed)  │         │  31 models (mixed)  │                │
 │   └──────────┬──────────┘         └──────────┬──────────┘                │
 │              └──────────────┬───────────────┘                           │
 │                     ┌────────▼────────┐                                 │
