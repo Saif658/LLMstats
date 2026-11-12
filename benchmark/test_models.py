@@ -68,11 +68,11 @@ OR_MODELS_BY_PROVIDER = {
         ["cohere/north-mini-code:free"],
     "Auto-added":
         [
-            "baidu/ernie-5.5-flash-preview:free",
-            "google/gemma-4-31b-it:free",
-            "liquid/lfm-3-1.7b:free",
-            "nvidia/nemotron-3.5-super-vl:free",
-            "recursive/flint-v1.0:free",
+            "dots-studio/dots-3-note-preview:free",
+            "liquid/lfm-2.5-2.6b:free",
+            "nvidia/nemotron-3.5-lightning:free",
+            "openrouter/free",
+            "thinkingmachines/inkling-2-small:free",
         ],
 }
 OPENROUTER_FREE_MODELS = [m for ms in OR_MODELS_BY_PROVIDER.values() for m in ms]
@@ -147,6 +147,7 @@ MISTRAL_MODELS = [
     "magistral-medium-latest",
     "mistral-large-4",
     "mistral-large-4-0",
+    "mistral-large-latest",
 ]
 
 # (model_id, provider_name) pairs joined for convenience elsewhere.
@@ -390,6 +391,9 @@ GROUP1_MODELS: list[tuple[str, str]] = [
     ("baidu/ernie-5.5-flash-preview:free",      "openrouter"),
     ("liquid/lfm-3-1.7b:free",                  "openrouter"),
     ("recursive/flint-v1.0:free",               "openrouter"),
+    ("dots-studio/dots-3-note-preview:free",    "openrouter"),
+    ("mistral-large-latest",                    "mistral"),
+    ("openrouter/free",                         "openrouter"),
 ]
 
 GROUP2_MODELS: list[tuple[str, str]] = [
@@ -566,6 +570,9 @@ GROUP2_MODELS: list[tuple[str, str]] = [
     ("openrouter/free",                                     "openrouter"),
     ("google/gemma-4-31b-it:free",                          "openrouter"),
     ("nvidia/nemotron-3.5-super-vl:free",                   "openrouter"),
+    ("liquid/lfm-2.5-2.6b:free",                            "openrouter"),
+    ("nvidia/nemotron-3.5-lightning:free",                  "openrouter"),
+    ("thinkingmachines/inkling-2-small:free",               "openrouter"),
 ]
 
 
