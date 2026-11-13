@@ -17,7 +17,7 @@
 
 ## ✨ What is LLMstats?
 
-**LLMstats** automatically benchmarks **41 free-tier models** roughly every 3 hours — **9 served by [OpenRouter](https://openrouter.ai/) (the unified router, 7 upstream providers), 5 by [Groq](https://groq.com/) (the LPU cloud), and 27 by [Mistral](https://mistral.ai/) (Experiment tier)** — and publishes the results to a live, interactive dashboard. No servers, no subscriptions — just fork the repo, drop in three API keys, and go.
+**LLMstats** automatically benchmarks **39 free-tier models** roughly every 3 hours — **10 served by [OpenRouter](https://openrouter.ai/) (the unified router, 7 upstream providers), 5 by [Groq](https://groq.com/) (the LPU cloud), and 24 by [Mistral](https://mistral.ai/) (Experiment tier)** — and publishes the results to a live, interactive dashboard. No servers, no subscriptions — just fork the repo, drop in three API keys, and go.
 
 | 🏎️ Every ~3h | 📊 Interactive Charts | 🔁 Zero Infra | 🔀 Multi-Provider |
 |:---:|:---:|:---:|:---:|
@@ -81,21 +81,22 @@ The dashboard auto-refreshes roughly every 3 hours after that. ✨
 ## 🤖 Benchmarked models (free tier)
 
 <details>
-<summary><b>41 models across 3 gateways, 10+ upstream providers</b</summary>
+<summary><b>39 models across 3 gateways, 10+ upstream providers</b</summary>
 
 <!-- OPENROUTER_MODELS:START -->
-### 🟣 OpenRouter · 9 models · 7 upstream providers
+### 🟣 OpenRouter · 10 models · 7 upstream providers
 | Upstream | Model | Note |
 |----------|-------|------|
 | **NVIDIA** | `nvidia/nemotron-3-ultra-550b-a55b:free` | 550B MoE flagship |
 | **NVIDIA** | `nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free` | Compact reasoning |
-| **NVIDIA** | `nvidia/nemotron-3.5-lightning:free` | New model |
+| **NVIDIA** | `nvidia/nemotron-3.5-super-vl:free` | New model |
 | **Google** | `google/gemma-4-26b-a4b-it:free` | Gemma 4 mid-size |
+| **Google** | `google/gemma-4-31b-it:free` | New model |
 | **Cohere** | `cohere/north-mini-code:free` | Cohere North mini-code |
-| **dots-studio** | `dots-studio/dots-3-note-preview:free` | New model |
-| **liquid** | `liquid/lfm-2.5-2.6b:free` | New model |
-| **openrouter** | `openrouter/free` | New model |
-| **Thinking Machines** | `thinkingmachines/inkling-2-small:free` | New model |
+| **baidu** | `baidu/ernie-5.5-flash-preview:free` | New model |
+| **liquid** | `liquid/lfm-3-1.7b:free` | New model |
+| **particle-ai** | `particle-ai/particle-1:free` | New model |
+| **recursive** | `recursive/flint-v1.0:free` | New model |
 <!-- OPENROUTER_MODELS:END -->
 
 <!-- GROQ_MODELS:START -->
@@ -110,7 +111,7 @@ The dashboard auto-refreshes roughly every 3 hours after that. ✨
 <!-- GROQ_MODELS:END -->
 
 <!-- MISTRAL_MODELS:START -->
-### 🔵 Mistral · 27 chat models (Experiment tier)
+### 🔵 Mistral · 24 chat models (Experiment tier)
 | Model | Note |
 |-------|------|
 | `mistral-medium-latest` | Mistral Medium |
@@ -137,9 +138,6 @@ The dashboard auto-refreshes roughly every 3 hours after that. ✨
 | `mistral-vibe-cli-latest` | New model |
 | `mistral-vibe-cli-with-tools` | New model |
 | `magistral-medium-latest` | Magistral medium |
-| `mistral-large-4` | New model |
-| `mistral-large-4-0` | New model |
-| `mistral-large-latest` | New model |
 <!-- MISTRAL_MODELS:END -->
 
 </details>
@@ -153,7 +151,7 @@ The dashboard auto-refreshes roughly every 3 hours after that. ✨
 │                                                                          │
 │   ┌─────────────────────┐         ┌─────────────────────┐                │
 │   │  Job 1 — Group A    │         │  Job 2 — Group B    │  in parallel    │
-│   │  42 models (mixed)  │         │  34 models (mixed)  │                │
+│   │  40 models (mixed)  │         │  32 models (mixed)  │                │
 │   └──────────┬──────────┘         └──────────┬──────────┘                │
 │              └──────────────┬───────────────┘                           │
 │                     ┌────────▼────────┐                                 │
