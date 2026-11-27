@@ -17,7 +17,7 @@
 
 ## ✨ What is LLMstats?
 
-**LLMstats** automatically benchmarks **33 free-tier models** roughly every 3 hours — **6 served by [OpenRouter](https://openrouter.ai/) (the unified router, 4 upstream providers), 5 by [Groq](https://groq.com/) (the LPU cloud), and 22 by [Mistral](https://mistral.ai/) (Experiment tier)** — and publishes the results to a live, interactive dashboard. No servers, no subscriptions — just fork the repo, drop in three API keys, and go.
+**LLMstats** automatically benchmarks **36 free-tier models** roughly every 3 hours — **9 served by [OpenRouter](https://openrouter.ai/) (the unified router, 6 upstream providers), 5 by [Groq](https://groq.com/) (the LPU cloud), and 22 by [Mistral](https://mistral.ai/) (Experiment tier)** — and publishes the results to a live, interactive dashboard. No servers, no subscriptions — just fork the repo, drop in three API keys, and go.
 
 | 🏎️ Every ~3h | 📊 Interactive Charts | 🔁 Zero Infra | 🔀 Multi-Provider |
 |:---:|:---:|:---:|:---:|
@@ -81,18 +81,21 @@ The dashboard auto-refreshes roughly every 3 hours after that. ✨
 ## 🤖 Benchmarked models (free tier)
 
 <details>
-<summary><b>33 models across 3 gateways, 7+ upstream providers</b</summary>
+<summary><b>36 models across 3 gateways, 9+ upstream providers</b</summary>
 
 <!-- OPENROUTER_MODELS:START -->
-### 🟣 OpenRouter · 6 models · 4 upstream providers
+### 🟣 OpenRouter · 9 models · 6 upstream providers
 | Upstream | Model | Note |
 |----------|-------|------|
 | **NVIDIA** | `nvidia/nemotron-3-ultra-550b-a55b:free` | 550B MoE flagship |
 | **NVIDIA** | `nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free` | Compact reasoning |
-| **NVIDIA** | `nvidia/nemotron-3.5-lightning:free` | New model |
+| **NVIDIA** | `nvidia/nemotron-3.5-super-vl:free` | New model |
 | **Google** | `google/gemma-4-26b-a4b-it:free` | Gemma 4 mid-size |
-| **inclusionai** | `inclusionai/ling-3.2-flash:free` | New model |
-| **openrouter** | `openrouter/free` | New model |
+| **Google** | `google/gemma-4-31b-it:free` | New model |
+| **baidu** | `baidu/ernie-5.5-flash-preview:free` | New model |
+| **liquid** | `liquid/lfm-3-1.7b:free` | New model |
+| **particle-ai** | `particle-ai/particle-1:free` | New model |
+| **recursive** | `recursive/flint-v1.0:free` | New model |
 <!-- OPENROUTER_MODELS:END -->
 
 <!-- GROQ_MODELS:START -->
@@ -145,7 +148,7 @@ The dashboard auto-refreshes roughly every 3 hours after that. ✨
 │                                                                          │
 │   ┌─────────────────────┐         ┌─────────────────────┐                │
 │   │  Job 1 — Group A    │         │  Job 2 — Group B    │  in parallel    │
-│   │  38 models (mixed)  │         │  31 models (mixed)  │                │
+│   │  37 models (mixed)  │         │  30 models (mixed)  │                │
 │   └──────────┬──────────┘         └──────────┬──────────┘                │
 │              └──────────────┬───────────────┘                           │
 │                     ┌────────▼────────┐                                 │
